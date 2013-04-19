@@ -1,24 +1,109 @@
-<?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom">
 
-  <title><![CDATA[NOP]]></title>
-  <link href="http://cdfreitas.github.com/atom.xml" rel="self"/>
-  <link href="http://cdfreitas.github.com/"/>
-  <updated>2013-04-19T18:26:23-03:00</updated>
-  <id>http://cdfreitas.github.com/</id>
-  <author>
-    <name><![CDATA[Christian D. Freitas]]></name>
-    
-  </author>
-  <generator uri="http://octopress.org/">Octopress</generator>
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Raspberry Pi - Seu provedor de banda larga entrega o prometido? - NOP</title>
+  <meta name="author" content="Christian D. Freitas">
 
   
-  <entry>
-    <title type="html"><![CDATA[Raspberry Pi - Seu provedor de banda larga entrega o prometido?]]></title>
-    <link href="http://cdfreitas.github.com/blog/2013/04/19/raspberry-pi-seu-provedor-de-banda-larga-entrega-o-prometido/"/>
-    <updated>2013-04-19T18:04:00-03:00</updated>
-    <id>http://cdfreitas.github.com/blog/2013/04/19/raspberry-pi-seu-provedor-de-banda-larga-entrega-o-prometido</id>
-    <content type="html"><![CDATA[<h2 id="o-raspberry-pi">O Raspberry Pi</h2>
+  <meta name="description" content="O Raspberry Pi Há algum tempo, comprei uma placa Raspberry Pi com o objetivo de conhecer o hardware e medir o desempenho do Linux nela.
+Enquanto a &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://cdfreitas.github.com/blog/2013/04/19/raspberry-pi-seu-provedor-de-banda-larga-entrega-o-prometido/">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="/javascripts/ender.js"></script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <link href="/atom.xml" rel="alternate" title="NOP" type="application/atom+xml">
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-38760066-1']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">NOP</a></h1>
+  
+    <h2>No Operating Blog</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:cdfreitas.github.com" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">Raspberry Pi - Seu Provedor De Banda Larga Entrega O Prometido?</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-04-19T18:04:00-03:00" pubdate data-updated="true">Apr 19<span>th</span>, 2013</time>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><h2 id="o-raspberry-pi">O Raspberry Pi</h2>
 
 <p>Há algum tempo, comprei uma placa <a href="http://raspberrypi.org">Raspberry Pi</a> com o objetivo de conhecer o hardware e medir o desempenho do Linux nela.
 Enquanto a plaquinha não chegava, as ideias iam surgindo. No início, pensei em um servidor de disco para armazenar meus arquivos pessoais. Em seguida, surgiu a ideia de usar a plaquinha como um servidor multimídia, usando o <a href="http://wiki.xbmc.org/index.php?title=Raspberry_Pi">XBMC</a>. Logo em seguida, pensei em instalar o <a href="http://mamedev.org/">Mame</a> para diversão.<br />
@@ -63,7 +148,7 @@ Enquanto a plaquinha não chegava, as ideias iam surgindo. No início, pensei em
 
 <h2 id="script-de-definio-de-parmetros-defssh">Script de definição de parâmetros (defs.sh)</h2>
 
-<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span> (defs.sh)</span> <a href="http://cdfreitas.github.com/downloads/code/speedtest/defs.sh">download</a></figcaption>
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span> (defs.sh)</span> <a href="/downloads/code/speedtest/defs.sh">download</a></figcaption>
  <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
 <span class="line-number">2</span>
 <span class="line-number">3</span>
@@ -355,7 +440,7 @@ Enquanto a plaquinha não chegava, as ideias iam surgindo. No início, pensei em
 
 <p>Este script cria o banco de dados que será utilizado pelo RRDTool para armazenar os valores medidos e capturados do modem.</p>
 
-<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span> (create_database.sh)</span> <a href="http://cdfreitas.github.com/downloads/code/speedtest/create_database.sh">download</a></figcaption>
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span> (create_database.sh)</span> <a href="/downloads/code/speedtest/create_database.sh">download</a></figcaption>
  <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
 <span class="line-number">2</span>
 <span class="line-number">3</span>
@@ -482,7 +567,7 @@ Enquanto a plaquinha não chegava, as ideias iam surgindo. No início, pensei em
 
 <p>Este script, um dos mais importantes do projeto, é responsável pela atualização do banco de dados.  </p>
 
-<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span> (update_database.sh)</span> <a href="http://cdfreitas.github.com/downloads/code/speedtest/update_database.sh">download</a></figcaption>
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span> (update_database.sh)</span> <a href="/downloads/code/speedtest/update_database.sh">download</a></figcaption>
  <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
 <span class="line-number">2</span>
 <span class="line-number">3</span>
@@ -671,7 +756,7 @@ Enquanto a plaquinha não chegava, as ideias iam surgindo. No início, pensei em
 
 <p>Esta saída será repassada para o programa python <em>extract_html_data.py</em>, cujo código é reproduzido a seguir:</p>
 
-<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span> (extract_html_data.py)</span> <a href="http://cdfreitas.github.com/downloads/code/speedtest/extract_html_data.py">download</a></figcaption>
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span> (extract_html_data.py)</span> <a href="/downloads/code/speedtest/extract_html_data.py">download</a></figcaption>
  <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
 <span class="line-number">2</span>
 <span class="line-number">3</span>
@@ -760,7 +845,7 @@ VALUE_FROM_HTML[1]=$Upload
 
 <p>Código HTML: </p>
 
-<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span> (speedtest.html)</span> <a href="http://cdfreitas.github.com/downloads/code/speedtest/speedtest.html">download</a></figcaption>
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span> (speedtest.html)</span> <a href="/downloads/code/speedtest/speedtest.html">download</a></figcaption>
  <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
 <span class="line-number">2</span>
 <span class="line-number">3</span>
@@ -849,11 +934,11 @@ VALUE_FROM_HTML[1]=$Upload
 
 <p>O resultado deste código (html e CSS) é exibido seguir:  </p>
 
-<p><img src="http://cdfreitas.github.com/images/speedtest/web_1.png" alt="pagina_web1" /></p>
+<p><img src="/images/speedtest/web_1.png" alt="pagina_web1" /></p>
 
 <p>Ao clicar em um dos “botões” na página, a função <em>create_graphs</em> será chamada, que por sua vez, executará o <em>cgi</em> <em>create_graphs.cgi</em>, exibido a seguir:  </p>
 
-<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span> (create_graphs.cgi)</span> <a href="http://cdfreitas.github.com/downloads/code/speedtest/create_graphs.cgi">download</a></figcaption>
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span> (create_graphs.cgi)</span> <a href="/downloads/code/speedtest/create_graphs.cgi">download</a></figcaption>
  <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
 <span class="line-number">2</span>
 <span class="line-number">3</span>
@@ -1038,17 +1123,160 @@ VALUE_FROM_HTML[1]=$Upload
 
 <p>O resultado final, quando a página abrigada no servidor <em>www</em> for exibida pelo browser, para os gráficos do dia:</p>
 
-<p><img src="http://cdfreitas.github.com/images/speedtest/web_adsl_diario.png" alt="página_web2" /></p>
+<p><img src="/images/speedtest/web_adsl_diario.png" alt="página_web2" /></p>
 
 <p>Para os gráficos da semana:   </p>
 
-<p><img src="http://cdfreitas.github.com/images/speedtest/web_adsl_semana.png" alt="página_web3" /></p>
+<p><img src="/images/speedtest/web_adsl_semana.png" alt="página_web3" /></p>
 
 <p>E aqui, o Raspberry, sem case, sem local definido, repousando temporariamente sobre o meu modem…</p>
 
-<p><img src="http://cdfreitas.github.com/images/speedtest/raspberry.jpg" alt="Raspberry" /></p>
+<p><img src="/images/speedtest/raspberry.jpg" alt="Raspberry" /></p>
 
-]]></content>
-  </entry>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
   
-</feed>
+
+<span class="byline author vcard">Posted by <span class="fn">Christian D. Freitas</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-04-19T18:04:00-03:00" pubdate data-updated="true">Apr 19<span>th</span>, 2013</time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/raspberry-pi/'>Raspberry Pi</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://cdfreitas.github.com/blog/2013/04/19/raspberry-pi-seu-provedor-de-banda-larga-entrega-o-prometido/" data-via="" data-counturl="http://cdfreitas.github.com/blog/2013/04/19/raspberry-pi-seu-provedor-de-banda-larga-entrega-o-prometido/" >Tweet</a>
+  
+  
+  <div class="g-plusone" data-size="medium"></div>
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+      
+    </p>
+  </footer>
+</article>
+
+  <section>
+    <h1>Comments</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+  </section>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2013/04/19/raspberry-pi-seu-provedor-de-banda-larga-entrega-o-prometido/">Raspberry Pi - Seu provedor de banda larga entrega o prometido?</a>
+      </li>
+    
+  </ul>
+</section>
+
+
+
+
+<section class="googleplus">
+  <h1>
+    <a href="https://plus.google.com/cdfreitas@gmail.com?rel=author">
+      <img src="http://www.google.com/images/icons/ui/gprofile_button-32.png" width="32" height="32">
+      Google+
+    </a>
+  </h1>
+</section>
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2013 - Christian D. Freitas -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+<script type="text/javascript">
+      var disqus_shortname = 'cdfreitas';
+      
+        
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://cdfreitas.github.com/blog/2013/04/19/raspberry-pi-seu-provedor-de-banda-larga-entrega-o-prometido/';
+        var disqus_url = 'http://cdfreitas.github.com/blog/2013/04/19/raspberry-pi-seu-provedor-de-banda-larga-entrega-o-prometido/';
+        var disqus_script = 'embed.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = 'http://' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+
+
+  <script type="text/javascript">
+    (function() {
+      var script = document.createElement('script'); script.type = 'text/javascript'; script.async = true;
+      script.src = 'https://apis.google.com/js/plusone.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(script, s);
+    })();
+  </script>
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

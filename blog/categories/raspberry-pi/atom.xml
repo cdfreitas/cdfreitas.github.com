@@ -1,0 +1,1010 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Raspberry Pi | NOP]]></title>
+  <link href="http://cdfreitas.github.com/blog/categories/raspberry-pi/atom.xml" rel="self"/>
+  <link href="http://cdfreitas.github.com/"/>
+  <updated>2013-04-19T18:26:23-03:00</updated>
+  <id>http://cdfreitas.github.com/</id>
+  <author>
+    <name><![CDATA[Christian D. Freitas]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Raspberry Pi - Seu provedor de banda larga entrega o prometido?]]></title>
+    <link href="http://cdfreitas.github.com/blog/2013/04/19/raspberry-pi-seu-provedor-de-banda-larga-entrega-o-prometido/"/>
+    <updated>2013-04-19T18:04:00-03:00</updated>
+    <id>http://cdfreitas.github.com/blog/2013/04/19/raspberry-pi-seu-provedor-de-banda-larga-entrega-o-prometido</id>
+    <content type="html"><![CDATA[<h2 id="o-raspberry-pi">O Raspberry Pi</h2>
+
+<p>Há algum tempo, comprei uma placa <a href="http://raspberrypi.org">Raspberry Pi</a> com o objetivo de conhecer o hardware e medir o desempenho do Linux nela.
+Enquanto a plaquinha não chegava, as ideias iam surgindo. No início, pensei em um servidor de disco para armazenar meus arquivos pessoais. Em seguida, surgiu a ideia de usar a plaquinha como um servidor multimídia, usando o <a href="http://wiki.xbmc.org/index.php?title=Raspberry_Pi">XBMC</a>. Logo em seguida, pensei em instalar o <a href="http://mamedev.org/">Mame</a> para diversão.<br />
+<!-- more --></p>
+
+<p>E foram surgindo várias e várias ideias de uso para o Raspberry.  </p>
+
+<p>Pois bem, a placa chegou! Instalei o Debian no SD card e testei… Que maravilha !!!! Tudo funcionou conforme o script e com um desempenho satisfatório para o hardware.  </p>
+
+<p>Após o teste desliguei tudo, guardei a placa na minha gaveta e lá ela ficou, dormindo por quase 6 meses.  </p>
+
+<p>Até que um dia, surgiu mais uma ideia de uso, mas desta vez com algo que estava me dando um certo trabalho. Como eu havia assinado um novo plano de banda larga no provedor (GVT), comecei a monitorar se estava recebendo a velocidade contratada. Para tal, usava o medidor <a href="http://speedtest.net">Speedtest.net</a>. Além disso, de tempos em tempos eu usava a interface web do meu modem para checar alguns parâmetros da conexão ADSL (atenuação da linha, nível de sinal-ruído, etc.)  </p>
+
+<p>Daí resolvi monitorar a “qualidade” da minha conexão usando o Raspberry Pi. Como se trata de uma placa que roda Linux é possível utilizar as ferramentas disponíveis deste ambiente e escrever pouco código para atingir o objetivo. Além disso, a placa tem uma característica importante para um sistema de monitoramento 24/7 doméstico: seu consumo é baixo (por volta de 2 watts).</p>
+
+<h2 id="as-ferramentas">As ferramentas</h2>
+
+<p>Antes de sair escrevendo código, resolvi buscar por alguma solução pronta para o teste de velocidade do link. Encontrei um código python <a href="https://github.com/Janhouse/tespeed">aqui</a>. (<em>tespeed</em>)  </p>
+
+<p>O <em>tespeed</em> faz um teste de velocidade utilizando as instâncias de servidores do <a href="http://speedtest.net">Speedtest.net</a>. Ou seja, faz o que eu estava fazendo “na mão”, quando acessava o <em>site</em>.   </p>
+
+<p>Para executar o teste de velocidade, em seu teste padrão (sem parâmetros adicionais), o <em>testpeed</em> seleciona um servidor dentre os servidores cadastrados em uma lista, e troca dados com este servidor com o objetivo de medir a velocidade do link. Na seleção do servidor, o <em>tespeed</em> utiliza aquele de menor latência e localizado próximo de sua conexão com a internet (a localização é estabelecida utilizando o endereço IP fornecido pelo provedor que você assina e a latência é medida pelo tempo tempo de <em>ping</em>)</p>
+
+<p>O único problema neste processo de seleção é que o servidor escolhido poderá ser um servidor localizado dentro da rede de seu provedor. Isto ocorre porque alguns os provedores de internet instalam instâncias do <em>server</em> do <em>speedtest.net</em> em seus próprios servidores e os adicionam na lista de servidores disponíveis para teste do <em>speedtest.net</em>.   </p>
+
+<p>Com isso, quando um servidor de seu próprio provedor é selecionado, o seu teste poderá não estar testando a sua velocidade de conexão com a Internet, de fato. Isto porque o teste de velocidade será feito através de uma conexão entre o seu computador doméstico e o servidor instalado em seu provedor. Nenhum tráfego será gerado “para a Internet”. Se a “saída” de seu provedor estiver congestionada, o teste não captará este congestionamento, uma vez que apenas a infraestrutura do próprio provedor estará sendo testada (a conexão entre sua casa e o servidor instalado no provedor).  </p>
+
+<p>Apesar desta característica do teste padrão executado pelo <em>tespeed</em>, quando planejei o teste de minha conexão com a Internet, imaginei um teste dos parâmetros da minha conexão até o outro lado da linha telefônica, por entender que este seria o ponto mais frágil de minha conexão. (o caminho da tomada telefônica, em minha residência, até o DSLAM do provedor, pelo menos)  </p>
+
+<p>Mesmo assim, para quem estiver pensando em executar o teste de velocidade com algum servidor específico (dentre os disponíveis no <em>speedtest.net</em>), é possível fixar o servidor no <em>tespeed</em>, chamando o programa com um parâmetro adicional. (verifique o manual ou o <em>help</em> do programa)    </p>
+
+<p>Além do código do <em>tespeed</em>, neste projeto foram utilizadas outras ferramentas:</p>
+
+<ul>
+  <li>bash - dispensa comentários. Um manual pode ser encontrado <a href="http://www.gnu.org/software/bash/manual/bashref.html">aqui</a>.</li>
+  <li><a href="http://oss.oetiker.ch/rrdtool/">RRDtool</a> - armazenamento dos valores medidos e geração dos gráficos</li>
+  <li><a href="http://www.python.org">Python</a> - usei as funções de  <em>parser</em> de arquivos HTML </li>
+  <li><a href="http://www.lighttpd.net">lighttpd</a> - servidor html</li>
+  <li><a href="http://www.gnu.org/software/wget/">wget</a> - utilizado para ler a página de estatísticas da conexão ADSL, gerada pelo modem</li>
+  <li><a href="http://en.wikipedia.org/wiki/Cron">cron</a></li>
+</ul>
+
+<h2 id="script-de-definio-de-parmetros-defssh">Script de definição de parâmetros (defs.sh)</h2>
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span> (defs.sh)</span> <a href='/downloads/code/speedtest/defs.sh'>download</a></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+<span class='line-number'>36</span>
+<span class='line-number'>37</span>
+<span class='line-number'>38</span>
+<span class='line-number'>39</span>
+<span class='line-number'>40</span>
+<span class='line-number'>41</span>
+<span class='line-number'>42</span>
+<span class='line-number'>43</span>
+<span class='line-number'>44</span>
+<span class='line-number'>45</span>
+<span class='line-number'>46</span>
+<span class='line-number'>47</span>
+<span class='line-number'>48</span>
+<span class='line-number'>49</span>
+<span class='line-number'>50</span>
+<span class='line-number'>51</span>
+<span class='line-number'>52</span>
+<span class='line-number'>53</span>
+<span class='line-number'>54</span>
+<span class='line-number'>55</span>
+<span class='line-number'>56</span>
+<span class='line-number'>57</span>
+<span class='line-number'>58</span>
+<span class='line-number'>59</span>
+<span class='line-number'>60</span>
+<span class='line-number'>61</span>
+<span class='line-number'>62</span>
+<span class='line-number'>63</span>
+<span class='line-number'>64</span>
+<span class='line-number'>65</span>
+<span class='line-number'>66</span>
+<span class='line-number'>67</span>
+<span class='line-number'>68</span>
+<span class='line-number'>69</span>
+<span class='line-number'>70</span>
+<span class='line-number'>71</span>
+<span class='line-number'>72</span>
+<span class='line-number'>73</span>
+<span class='line-number'>74</span>
+<span class='line-number'>75</span>
+<span class='line-number'>76</span>
+<span class='line-number'>77</span>
+<span class='line-number'>78</span>
+<span class='line-number'>79</span>
+<span class='line-number'>80</span>
+<span class='line-number'>81</span>
+<span class='line-number'>82</span>
+<span class='line-number'>83</span>
+<span class='line-number'>84</span>
+<span class='line-number'>85</span>
+<span class='line-number'>86</span>
+<span class='line-number'>87</span>
+<span class='line-number'>88</span>
+<span class='line-number'>89</span>
+<span class='line-number'>90</span>
+<span class='line-number'>91</span>
+<span class='line-number'>92</span>
+<span class='line-number'>93</span>
+<span class='line-number'>94</span>
+<span class='line-number'>95</span>
+<span class='line-number'>96</span>
+<span class='line-number'>97</span>
+<span class='line-number'>98</span>
+<span class='line-number'>99</span>
+<span class='line-number'>100</span>
+<span class='line-number'>101</span>
+<span class='line-number'>102</span>
+<span class='line-number'>103</span>
+<span class='line-number'>104</span>
+<span class='line-number'>105</span>
+<span class='line-number'>106</span>
+<span class='line-number'>107</span>
+<span class='line-number'>108</span>
+<span class='line-number'>109</span>
+<span class='line-number'>110</span>
+<span class='line-number'>111</span>
+<span class='line-number'>112</span>
+<span class='line-number'>113</span>
+<span class='line-number'>114</span>
+<span class='line-number'>115</span>
+<span class='line-number'>116</span>
+<span class='line-number'>117</span>
+<span class='line-number'>118</span>
+<span class='line-number'>119</span>
+<span class='line-number'>120</span>
+<span class='line-number'>121</span>
+<span class='line-number'>122</span>
+<span class='line-number'>123</span>
+<span class='line-number'>124</span>
+<span class='line-number'>125</span>
+<span class='line-number'>126</span>
+<span class='line-number'>127</span>
+<span class='line-number'>128</span>
+<span class='line-number'>129</span>
+<span class='line-number'>130</span>
+<span class='line-number'>131</span>
+<span class='line-number'>132</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'><span class="c">#!/bin/bash</span>
+</span><span class='line'><span class="c"># </span>
+</span><span class='line'><span class="c"># defs.sh</span>
+</span><span class='line'><span class="c"># Parameters used by all programs</span>
+</span><span class='line'><span class="c">#</span>
+</span><span class='line'><span class="c"># 201301 - Christian D Freitas</span>
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'><span class="c">#Database name</span>
+</span><span class='line'><span class="nv">DATABASE</span><span class="o">=</span>db.rrd
+</span><span class='line'><span class="c">#Modem address</span>
+</span><span class='line'><span class="nv">MODEM_ADDR</span><span class="o">=</span>
+</span><span class='line'><span class="c">#Modem page (where to get statistics)</span>
+</span><span class='line'><span class="nv">MODEM_DSL_PAGE</span><span class="o">=</span><span class="s2">&quot;/index.cgi?page=statdsl&quot;</span>
+</span><span class='line'><span class="c">#Modem admin account</span>
+</span><span class='line'><span class="nv">MODEM_USER</span><span class="o">=</span>
+</span><span class='line'><span class="c">#Modem password</span>
+</span><span class='line'><span class="nv">MODEM_PASS</span><span class="o">=</span>
+</span><span class='line'>
+</span><span class='line'><span class="c">#Arrays (avoiding multidimensional arrays!!)</span>
+</span><span class='line'>
+</span><span class='line'><span class="c">#Generate graphics only for parameters which index is present in the ARR_IDXS list</span>
+</span><span class='line'><span class="nv">ARR_IDXS</span><span class="o">=</span><span class="s2">&quot;0 1 6 7 8 9&quot;</span>
+</span><span class='line'><span class="c">#Last array index</span>
+</span><span class='line'><span class="nv">ARR_LAST_IDX</span><span class="o">=</span>13
+</span><span class='line'>
+</span><span class='line'><span class="c">#Array format</span>
+</span><span class='line'><span class="c">#ARR_DATABASE_DS_NAME[] = DS_name of parameter (rrdtool)</span>
+</span><span class='line'><span class="c">#ARR_GRAPH_TITLE[]= Graphic title  (rrdgraph)</span>
+</span><span class='line'><span class="c">#ARR_GRAPH_VERTICAL_LABEL[]= (rrdgraph)</span>
+</span><span class='line'><span class="c">#ARR_GRAPH_FILENAME[]= filename (generated by rrdgraph)</span>
+</span><span class='line'><span class="c">#ARR_MODEM_STRING[]=parameter search string</span>
+</span><span class='line'><span class="c">#   All modem parameters (ADSL statistcs) are gathered from the html file. The search string is (somewhat) used  to locate the parameter</span>
+</span><span class='line'><span class="c">#VALUE_FROM_HTML[]= Value gathered from the html file (or from tespeed.py</span>
+</span><span class='line'>
+</span><span class='line'>ARR_DATABASE_DS_NAME<span class="o">[</span>0<span class="o">]=</span><span class="s2">&quot;Speed_Download&quot;</span>
+</span><span class='line'>ARR_GRAPH_TITLE<span class="o">[</span>0<span class="o">]=</span><span class="s2">&quot;Downstream Speed&quot;</span>
+</span><span class='line'>ARR_GRAPH_VERTICAL_LABEL<span class="o">[</span>0<span class="o">]=</span><span class="s2">&quot;Mbps&quot;</span>
+</span><span class='line'>ARR_GRAPH_FILENAME<span class="o">[</span>0<span class="o">]=</span><span class="s2">&quot;downspeed&quot;</span>
+</span><span class='line'>ARR_MODEM_STRING<span class="o">[</span>0<span class="o">]=</span><span class="s2">&quot;Downstream Current Rate&quot;</span>
+</span><span class='line'>VALUE_FROM_HTML<span class="o">[</span>0<span class="o">]=</span>0
+</span><span class='line'>
+</span><span class='line'>ARR_DATABASE_DS_NAME<span class="o">[</span>1<span class="o">]=</span><span class="s2">&quot;Speed_Upload&quot;</span>
+</span><span class='line'>ARR_GRAPH_TITLE<span class="o">[</span>1<span class="o">]=</span><span class="s2">&quot;Upstream Speed&quot;</span>
+</span><span class='line'>ARR_GRAPH_VERTICAL_LABEL<span class="o">[</span>1<span class="o">]=</span><span class="s2">&quot;Mbps&quot;</span>
+</span><span class='line'>ARR_GRAPH_FILENAME<span class="o">[</span>1<span class="o">]=</span><span class="s2">&quot;uploadspeed&quot;</span>
+</span><span class='line'>ARR_MODEM_STRING<span class="o">[</span>1<span class="o">]=</span><span class="s2">&quot;Upstream Current Rate&quot;</span>
+</span><span class='line'>VALUE_FROM_HTML<span class="o">[</span>1<span class="o">]=</span>0
+</span><span class='line'>
+</span><span class='line'>ARR_DATABASE_DS_NAME<span class="o">[</span>2<span class="o">]=</span><span class="s2">&quot;Mdm_Down_C_Rate&quot;</span>
+</span><span class='line'>ARR_GRAPH_TITLE<span class="o">[</span>2<span class="o">]=</span><span class="s2">&quot;Downstream Current Rate&quot;</span>
+</span><span class='line'>ARR_GRAPH_VERTICAL_LABEL<span class="o">[</span>2<span class="o">]=</span><span class="s2">&quot;Mbps&quot;</span>
+</span><span class='line'>ARR_GRAPH_FILENAME<span class="o">[</span>2<span class="o">]=</span><span class="s2">&quot;downcurrrate&quot;</span>
+</span><span class='line'>ARR_MODEM_STRING<span class="o">[</span>2<span class="o">]=</span><span class="s2">&quot;Downstream Current Rate&quot;</span>
+</span><span class='line'>VALUE_FROM_HTML<span class="o">[</span>2<span class="o">]=</span>0
+</span><span class='line'>
+</span><span class='line'>ARR_DATABASE_DS_NAME<span class="o">[</span>3<span class="o">]=</span><span class="s2">&quot;Mdm_Up_C_Rate&quot;</span>
+</span><span class='line'>ARR_GRAPH_TITLE<span class="o">[</span>3<span class="o">]=</span><span class="s2">&quot;Upstream Current Rate&quot;</span>
+</span><span class='line'>ARR_GRAPH_VERTICAL_LABEL<span class="o">[</span>3<span class="o">]=</span><span class="s2">&quot;Mbps&quot;</span>
+</span><span class='line'>ARR_GRAPH_FILENAME<span class="o">[</span>3<span class="o">]=</span><span class="s2">&quot;upcurrrate&quot;</span>
+</span><span class='line'>ARR_MODEM_STRING<span class="o">[</span>3<span class="o">]=</span><span class="s2">&quot;Upstream Current Rate&quot;</span>
+</span><span class='line'>VALUE_FROM_HTML<span class="o">[</span>3<span class="o">]=</span>0
+</span><span class='line'>
+</span><span class='line'>ARR_DATABASE_DS_NAME<span class="o">[</span>4<span class="o">]=</span><span class="s2">&quot;Mdm_Down_Max_Rate&quot;</span>
+</span><span class='line'>ARR_GRAPH_TITLE<span class="o">[</span>4<span class="o">]=</span><span class="s2">&quot;Downstream Max Rate&quot;</span>
+</span><span class='line'>ARR_GRAPH_VERTICAL_LABEL<span class="o">[</span>4<span class="o">]=</span><span class="s2">&quot;Mbps&quot;</span>
+</span><span class='line'>ARR_GRAPH_FILENAME<span class="o">[</span>4<span class="o">]=</span><span class="s2">&quot;downmaxrate&quot;</span>
+</span><span class='line'>ARR_MODEM_STRING<span class="o">[</span>4<span class="o">]=</span><span class="s2">&quot;Downstream Max Rate&quot;</span>
+</span><span class='line'>VALUE_FROM_HTML<span class="o">[</span>4<span class="o">]=</span>0
+</span><span class='line'>
+</span><span class='line'>ARR_DATABASE_DS_NAME<span class="o">[</span>5<span class="o">]=</span><span class="s2">&quot;Mdm_Up_Max_Rate&quot;</span>
+</span><span class='line'>ARR_GRAPH_TITLE<span class="o">[</span>5<span class="o">]=</span><span class="s2">&quot;Upstream Max Rate&quot;</span>
+</span><span class='line'>ARR_GRAPH_VERTICAL_LABEL<span class="o">[</span>5<span class="o">]=</span><span class="s2">&quot;Mbps&quot;</span>
+</span><span class='line'>ARR_GRAPH_FILENAME<span class="o">[</span>5<span class="o">]=</span><span class="s2">&quot;upmaxrate&quot;</span>
+</span><span class='line'>ARR_MODEM_STRING<span class="o">[</span>5<span class="o">]=</span><span class="s2">&quot;Upstream Max Rate&quot;</span>
+</span><span class='line'>VALUE_FROM_HTML<span class="o">[</span>5<span class="o">]=</span>0
+</span><span class='line'>
+</span><span class='line'>ARR_DATABASE_DS_NAME<span class="o">[</span>6<span class="o">]=</span><span class="s2">&quot;Mdm_Down_Noise_M&quot;</span>
+</span><span class='line'>ARR_GRAPH_TITLE<span class="o">[</span>6<span class="o">]=</span><span class="s2">&quot;Downstream Noise Margin&quot;</span>
+</span><span class='line'>ARR_GRAPH_VERTICAL_LABEL<span class="o">[</span>6<span class="o">]=</span><span class="s2">&quot;dB&quot;</span>
+</span><span class='line'>ARR_GRAPH_FILENAME<span class="o">[</span>6<span class="o">]=</span><span class="s2">&quot;downnoisemargin&quot;</span>
+</span><span class='line'>ARR_MODEM_STRING<span class="o">[</span>6<span class="o">]=</span><span class="s2">&quot;Downstream Noise Margin&quot;</span>
+</span><span class='line'>VALUE_FROM_HTML<span class="o">[</span>6<span class="o">]=</span>0
+</span><span class='line'>
+</span><span class='line'>ARR_DATABASE_DS_NAME<span class="o">[</span>7<span class="o">]=</span><span class="s2">&quot;Mdm_Up_Noise_M&quot;</span>
+</span><span class='line'>ARR_GRAPH_TITLE<span class="o">[</span>7<span class="o">]=</span><span class="s2">&quot;Upstream Noise Margin&quot;</span>
+</span><span class='line'>ARR_GRAPH_VERTICAL_LABEL<span class="o">[</span>7<span class="o">]=</span><span class="s2">&quot;dB&quot;</span>
+</span><span class='line'>ARR_GRAPH_FILENAME<span class="o">[</span>7<span class="o">]=</span><span class="s2">&quot;upnoisemargin&quot;</span>
+</span><span class='line'>ARR_MODEM_STRING<span class="o">[</span>7<span class="o">]=</span><span class="s2">&quot;Upstream Noise Margin&quot;</span>
+</span><span class='line'>VALUE_FROM_HTML<span class="o">[</span>7<span class="o">]=</span>0
+</span><span class='line'>
+</span><span class='line'>ARR_DATABASE_DS_NAME<span class="o">[</span>8<span class="o">]=</span><span class="s2">&quot;Mdm_Down_Att&quot;</span>
+</span><span class='line'>ARR_GRAPH_TITLE<span class="o">[</span>8<span class="o">]=</span><span class="s2">&quot;Downstream Attenuation&quot;</span>
+</span><span class='line'>ARR_GRAPH_VERTICAL_LABEL<span class="o">[</span>8<span class="o">]=</span><span class="s2">&quot;dB&quot;</span>
+</span><span class='line'>ARR_GRAPH_FILENAME<span class="o">[</span>8<span class="o">]=</span><span class="s2">&quot;downatt&quot;</span>
+</span><span class='line'>ARR_MODEM_STRING<span class="o">[</span>8<span class="o">]=</span><span class="s2">&quot;Downstream Attenuation&quot;</span>
+</span><span class='line'>VALUE_FROM_HTML<span class="o">[</span>8<span class="o">]=</span>0
+</span><span class='line'>
+</span><span class='line'>ARR_DATABASE_DS_NAME<span class="o">[</span>9<span class="o">]=</span><span class="s2">&quot;Mdm_Up_Att&quot;</span>
+</span><span class='line'>ARR_GRAPH_TITLE<span class="o">[</span>9<span class="o">]=</span><span class="s2">&quot;Upstream Attenuation&quot;</span>
+</span><span class='line'>ARR_GRAPH_VERTICAL_LABEL<span class="o">[</span>9<span class="o">]=</span><span class="s2">&quot;dB&quot;</span>
+</span><span class='line'>ARR_GRAPH_FILENAME<span class="o">[</span>9<span class="o">]=</span><span class="s2">&quot;upatt&quot;</span>
+</span><span class='line'>ARR_MODEM_STRING<span class="o">[</span>9<span class="o">]=</span><span class="s2">&quot;Upstream Attenuation&quot;</span>
+</span><span class='line'>VALUE_FROM_HTML<span class="o">[</span>9<span class="o">]=</span>0
+</span><span class='line'>
+</span><span class='line'>ARR_DATABASE_DS_NAME<span class="o">[</span>10<span class="o">]=</span><span class="s2">&quot;Mdm_Down_Power&quot;</span>
+</span><span class='line'>ARR_GRAPH_TITLE<span class="o">[</span>10<span class="o">]=</span><span class="s2">&quot;Downstream Power&quot;</span>
+</span><span class='line'>ARR_GRAPH_VERTICAL_LABEL<span class="o">[</span>10<span class="o">]=</span><span class="s2">&quot;dbm&quot;</span>
+</span><span class='line'>ARR_GRAPH_FILENAME<span class="o">[</span>10<span class="o">]=</span><span class="s2">&quot;downpower&quot;</span>
+</span><span class='line'>ARR_MODEM_STRING<span class="o">[</span>10<span class="o">]=</span><span class="s2">&quot;Downstream Power&quot;</span>
+</span><span class='line'>VALUE_FROM_HTML<span class="o">[</span>10<span class="o">]=</span>0
+</span><span class='line'>
+</span><span class='line'>ARR_DATABASE_DS_NAME<span class="o">[</span>11<span class="o">]=</span><span class="s2">&quot;Mdm_Up_Power&quot;</span>
+</span><span class='line'>ARR_GRAPH_TITLE<span class="o">[</span>11<span class="o">]=</span><span class="s2">&quot;Upstream Power&quot;</span>
+</span><span class='line'>ARR_GRAPH_VERTICAL_LABEL<span class="o">[</span>11<span class="o">]=</span><span class="s2">&quot;dbm&quot;</span>
+</span><span class='line'>ARR_GRAPH_FILENAME<span class="o">[</span>11<span class="o">]=</span><span class="s2">&quot;uppower&quot;</span>
+</span><span class='line'>ARR_MODEM_STRING<span class="o">[</span>11<span class="o">]=</span><span class="s2">&quot;Upstream Power&quot;</span>
+</span><span class='line'>VALUE_FROM_HTML<span class="o">[</span>11<span class="o">]=</span>0
+</span><span class='line'>
+</span><span class='line'>ARR_DATABASE_DS_NAME<span class="o">[</span>12<span class="o">]=</span><span class="s2">&quot;Mdm_Down_FEC&quot;</span>
+</span><span class='line'>ARR_GRAPH_TITLE<span class="o">[</span>12<span class="o">]=</span><span class="s2">&quot;Downstream FEC&quot;</span>
+</span><span class='line'>ARR_GRAPH_VERTICAL_LABEL<span class="o">[</span>12<span class="o">]=</span><span class="s2">&quot;corrected blocks&quot;</span>
+</span><span class='line'>ARR_GRAPH_FILENAME<span class="o">[</span>12<span class="o">]=</span><span class="s2">&quot;downfec&quot;</span>
+</span><span class='line'>ARR_MODEM_STRING<span class="o">[</span>12<span class="o">]=</span><span class="s2">&quot;Downstream FEC&quot;</span>
+</span><span class='line'>VALUE_FROM_HTML<span class="o">[</span>12<span class="o">]=</span>0
+</span><span class='line'>
+</span><span class='line'>ARR_DATABASE_DS_NAME<span class="o">[</span>13<span class="o">]=</span><span class="s2">&quot;Mdm_Up_FEC&quot;</span>
+</span><span class='line'>ARR_GRAPH_TITLE<span class="o">[</span>13<span class="o">]=</span><span class="s2">&quot;Upstream FEC&quot;</span>
+</span><span class='line'>ARR_GRAPH_VERTICAL_LABEL<span class="o">[</span>13<span class="o">]=</span><span class="s2">&quot;corrected blocks&quot;</span>
+</span><span class='line'>ARR_GRAPH_FILENAME<span class="o">[</span>13<span class="o">]=</span><span class="s2">&quot;upfec&quot;</span>
+</span><span class='line'>ARR_MODEM_STRING<span class="o">[</span>13<span class="o">]=</span><span class="s2">&quot;Upstream FEC&quot;</span>
+</span><span class='line'>VALUE_FROM_HTML<span class="o">[</span>13<span class="o">]=</span>0
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<p>Neste script são definidos todos os parâmetros que serão compartilhados pelos módulos do projeto.</p>
+
+<p>As variáveis MODEM_ADDR, MODEM_DSL_PAGE, MODEM_USER e MODEM_PASS definem os parâmetros necessários para que um script (que será apresentado mais adiante) obtenha as informações do modem. _(é necessário editar o arquivo defs.sh e atribuir os valores das variáveis MODEM_ADDR, MODEM_USER e MODEM_PASS)  </p>
+
+<p>Aqui cabe um comentário: geralmente, o protocolo <a href="http://pt.wikipedia.org/wiki/Simple_Network_Management_Protocol">SNMP</a> é utilizado para obter informações de um dispositivo de rede (switchs, roteadores, modems, etc.). Acontece, porém, que o provedor que assino (GVT) não disponibiliza este protocolo para acesso às informações no modem (PowerBox). Caso disponibilizasse, seria possível utilizar o aplicativo <a href="http://www.net-snmp.org/docs/man/snmpget.html">snmpget</a> para obter as informações do dispositivo e alimentar o banco de dados do RRDTools.  </p>
+
+<p>Para contornar o problema, a solução que implementei pega as informações diretamente de uma página <em>web</em> gerada pelo modem (as tradicionais páginas de configuração do dispoitivo, acessadas pelo browser). Para realizar esta tarefa, usei o aplicativo <em>wget</em>, que lê a página gerada pelo modem utilizando como parâmetro as variáveis definidas neste script (endereço do modem, username, password e local da página html).  </p>
+
+<p>Os demais parâmetros definidos nas linhas 36 em diante são ordenados na forma de um <em>array</em>, onde casa posição deste array armazena os dados referentes a alguma informação medida (ex: velocidadei de <em>Download</em>), ou obtida do modem (ex: <em>Downstream Attenuation</em>).  </p>
+
+<p>Os seguintes elementos fazem parte deste <em>array</em>:</p>
+
+<ul>
+  <li>ARR_DATABASE_DS_NAME[] - nome que será utilizado no RRDTool (DS - <em>database source</em>)</li>
+  <li>ARR_GRAPH_TITLE[] - nome que será exibido como título do gráfico gerado pelo rrdgraph (RRDTool)</li>
+  <li>ARR_GRAPH_VERTICAL_LABEL[] - título do eixo vertical do gráfico gerado pelo rrdgraph</li>
+  <li>ARR_GRAPH_FILENAME[] - nome do arquivo de saída gerado pelo rrdgraph (o rrdgraph gerará um arquivo no formato PNG)</li>
+  <li>ARR_MODEM_STRING[] - string utilizada pelo script para localizar a posição da informação que será obtida do arquivo html que contém as estatísticas do modem</li>
+  <li>VALUE_FROM_HTML[] - valor capturado do arquivo html gerado pelo modem (ou valores medidos pelo script de teste de velocidade)</li>
+</ul>
+
+<h2 id="script-de-criao-o-banco-de-dados-do-rrdtool-createdatabasesh">Script de criação o banco de dados do RRDTool (create_database.sh)</h2>
+
+<p>Este script cria o banco de dados que será utilizado pelo RRDTool para armazenar os valores medidos e capturados do modem.</p>
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span> (create_database.sh)</span> <a href='/downloads/code/speedtest/create_database.sh'>download</a></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+<span class='line-number'>36</span>
+<span class='line-number'>37</span>
+<span class='line-number'>38</span>
+<span class='line-number'>39</span>
+<span class='line-number'>40</span>
+<span class='line-number'>41</span>
+<span class='line-number'>42</span>
+<span class='line-number'>43</span>
+<span class='line-number'>44</span>
+<span class='line-number'>45</span>
+<span class='line-number'>46</span>
+<span class='line-number'>47</span>
+<span class='line-number'>48</span>
+<span class='line-number'>49</span>
+<span class='line-number'>50</span>
+<span class='line-number'>51</span>
+<span class='line-number'>52</span>
+<span class='line-number'>53</span>
+<span class='line-number'>54</span>
+<span class='line-number'>55</span>
+<span class='line-number'>56</span>
+<span class='line-number'>57</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'><span class="c">#!/bin/bash</span>
+</span><span class='line'><span class="c"># </span>
+</span><span class='line'><span class="c"># create_database.sh</span>
+</span><span class='line'><span class="c"># Creates rrd (rrdtool)  database</span>
+</span><span class='line'><span class="c">#</span>
+</span><span class='line'><span class="c"># 201301 - Christian D Freitas</span>
+</span><span class='line'>
+</span><span class='line'><span class="c"># Import definitions</span>
+</span><span class='line'><span class="nb">source </span>defs.sh
+</span><span class='line'>
+</span><span class='line'><span class="c"># Remove old database</span>
+</span><span class='line'>rm <span class="nv">$DATABASE</span>
+</span><span class='line'>
+</span><span class='line'><span class="c"># Database creation </span>
+</span><span class='line'><span class="c"># rrd</span>
+</span><span class='line'><span class="c">#rrdtool create filename --start time --step secs \</span>
+</span><span class='line'><span class="c">#DS:Label:Type:Heartbeat:Min:Max \</span>
+</span><span class='line'><span class="c">#RRA:Consolidation Function:XFF:Steps:Rows</span>
+</span><span class='line'><span class="c"># sketch  - This database was created to store speedtest results and modem DSL statistcs</span>
+</span><span class='line'><span class="c"># Modem: sagemcom 2764</span>
+</span><span class='line'><span class="c">#rrdtool create $DATABASE \</span>
+</span><span class='line'><span class="c">#         --start now \</span>
+</span><span class='line'><span class="c">#         --step 3600 \</span>
+</span><span class='line'><span class="c">#         DS:Speed_Download:GAUGE:7200:0:U \</span>
+</span><span class='line'><span class="c">#         DS:Speed_Upload:GAUGE:7200:0:U \</span>
+</span><span class='line'><span class="c">#         DS:Mdm_Down_C_Rate:GAUGE:7200:0:U \</span>
+</span><span class='line'><span class="c">#         DS:Mdm_Up_C_Rate:GAUGE:7200:0:U \</span>
+</span><span class='line'><span class="c">#         DS:Mdm_Down_Max_Rate:GAUGE:7200:0:U \</span>
+</span><span class='line'><span class="c">#         DS:Mdm_Up_Max_Rate:GAUGE:7200:0:U \</span>
+</span><span class='line'><span class="c">#         DS:Mdm_Down_Noise_M:GAUGE:7200:0:U \</span>
+</span><span class='line'><span class="c">#         DS:Mdm_Up_Noise_M:GAUGE:7200:0:U \</span>
+</span><span class='line'><span class="c">#         DS:Mdm_Down_Att:GAUGE:7200:0:U \</span>
+</span><span class='line'><span class="c">#         DS:Mdm_Up_Att:GAUGE:7200:0:U \</span>
+</span><span class='line'><span class="c">#         DS:Mdm_Down_Power:GAUGE:7200:0:U \</span>
+</span><span class='line'><span class="c">#         DS:Mdm_Up_Power:GAUGE:7200:0:U \</span>
+</span><span class='line'><span class="c">#         DS:Mdm_Down_FEC:GAUGE:7200:0:U \</span>
+</span><span class='line'><span class="c">#         DS:Mdm_Up_FEC:GAUGE:7200:0:U \</span>
+</span><span class='line'><span class="c">#         RRA:AVERAGE:0.5:1:744 \</span>
+</span><span class='line'><span class="c">#         RRA:AVERAGE:0.5:24:365 </span>
+</span><span class='line'><span class="c">#</span>
+</span><span class='line'><span class="c"># No primeiro RRA acima, serah calculada a media, a cada novo valor (1), e armazenado 744 medias (744 = 24h de  medidas por 31 dias)</span>
+</span><span class='line'><span class="c"># No segundo RRA acima, serah calculada a media, dos ultimos 24 valores, e armazenados 365 medias (ultimos 24 valores = 24h. 24*367 = 1 ano)</span>
+</span><span class='line'>
+</span><span class='line'><span class="c"># create execution string</span>
+</span><span class='line'><span class="nv">str_exec</span><span class="o">=</span><span class="s2">&quot;rrdtool create $DATABASE --start now --step 3600 &quot;</span>
+</span><span class='line'>
+</span><span class='line'><span class="c"># mount string</span>
+</span><span class='line'><span class="k">for </span>idx in <span class="sb">`</span>seq 0 <span class="nv">$ARR_LAST_IDX</span><span class="sb">`</span>
+</span><span class='line'><span class="k">do</span>
+</span><span class='line'><span class="k">    </span><span class="nv">str_exec</span><span class="o">=</span><span class="s2">&quot;$str_exec DS:${ARR_DATABASE_DS_NAME[$idx]}:GAUGE:7200:0:U&quot;</span>
+</span><span class='line'><span class="k">done</span>
+</span><span class='line'>
+</span><span class='line'><span class="c"># append RRAs to the end of string</span>
+</span><span class='line'><span class="nv">str_exec</span><span class="o">=</span><span class="s2">&quot;$str_exec RRA:AVERAGE:0.5:1:744 RRA:AVERAGE:0.5:24:365&quot;</span>
+</span><span class='line'>
+</span><span class='line'><span class="c"># Call string (create database)</span>
+</span><span class='line'><span class="nv">$str_exec</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<p>A função deste script é montar a string que define os <em>data-source</em> do banco de dados e executar o aplicativo <em>rrdtool</em> para criar o banco de dados.  </p>
+
+<p>A string é dinamicamente montada, usando os valores definidos no script defs.sh.</p>
+
+<p><em>(Deixei, como referência, o código comentado da string que será montada para a criação do banco de dados.)</em></p>
+
+<h2 id="script-de-atualizao-do-banco-de-dados-updatedatabasesh">Script de atualização do banco de dados (update_database.sh)</h2>
+
+<p>Este script, um dos mais importantes do projeto, é responsável pela atualização do banco de dados.  </p>
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span> (update_database.sh)</span> <a href='/downloads/code/speedtest/update_database.sh'>download</a></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+<span class='line-number'>36</span>
+<span class='line-number'>37</span>
+<span class='line-number'>38</span>
+<span class='line-number'>39</span>
+<span class='line-number'>40</span>
+<span class='line-number'>41</span>
+<span class='line-number'>42</span>
+<span class='line-number'>43</span>
+<span class='line-number'>44</span>
+<span class='line-number'>45</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'><span class="c">#!/bin/bash</span>
+</span><span class='line'><span class="c"># </span>
+</span><span class='line'><span class="c"># update_database.sh</span>
+</span><span class='line'><span class="c"># Updates the rrd (rrdtool)  database</span>
+</span><span class='line'><span class="c">#</span>
+</span><span class='line'><span class="c"># 201301 - Christian D Freitas</span>
+</span><span class='line'>
+</span><span class='line'><span class="c"># Import definitions</span>
+</span><span class='line'><span class="nb">source </span>defs.sh
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'><span class="c"># Executes tespeed - measures Download and Upload speed </span>
+</span><span class='line'><span class="nb">eval</span> <span class="k">$(</span>python -u tespeed.py -w -s | awk <span class="s1">&#39;BEGIN {FS = &quot;,&quot;} ; {print &quot;Download=&quot;$1; print &quot;Upload=&quot;$2}&#39;</span> <span class="k">)</span>
+</span><span class='line'>
+</span><span class='line'><span class="c"># Gets html file (statistics) from the modem</span>
+</span><span class='line'><span class="nv">modem_out</span><span class="o">=</span><span class="k">$(</span>wget -qO- --user<span class="o">=</span><span class="nv">$MODEM_USER</span> --password<span class="o">=</span><span class="nv">$MODEM_PASS</span> <span class="nv">$MODEM_ADDR$MODEM_DSL_PAGE</span><span class="k">)</span>
+</span><span class='line'>
+</span><span class='line'><span class="c"># Extracts values from the wget output (stored in modem_out) </span>
+</span><span class='line'><span class="c"># The python code outputs an assignment VALUE_FROM_HTML[idx]=value that is evaluated by eval</span>
+</span><span class='line'><span class="k">for </span>idx in <span class="sb">`</span>seq 0 <span class="nv">$ARR_LAST_IDX</span><span class="sb">`</span>
+</span><span class='line'><span class="k">do</span>
+</span><span class='line'><span class="k">    </span><span class="nb">eval</span> <span class="k">$(</span><span class="nb">echo</span> <span class="s2">&quot;$modem_out&quot;</span> | grep <span class="s2">&quot;${ARR_MODEM_STRING[$idx]}&quot;</span>  | python extract_html_data.py <span class="s2">&quot;VALUE_FROM_HTML[$idx]&quot;</span><span class="k">)</span>
+</span><span class='line'><span class="k">done</span>
+</span><span class='line'>
+</span><span class='line'><span class="c"># Stores the values measured by tespeed in the VALUE_FROM_HTML array (TODO: change this variable name)</span>
+</span><span class='line'>VALUE_FROM_HTML<span class="o">[</span>0<span class="o">]=</span><span class="nv">$Download</span>
+</span><span class='line'>VALUE_FROM_HTML<span class="o">[</span>1<span class="o">]=</span><span class="nv">$Upload</span>
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'><span class="c">#DEBUG</span>
+</span><span class='line'><span class="c">#for idx in $ARR_IDXS</span>
+</span><span class='line'><span class="c">#do</span>
+</span><span class='line'><span class="c">#    echo ${ARR_GRAPH_TITLE[idx]}&quot;--&gt;&quot;${VALUE_FROM_HTML[$idx]}</span>
+</span><span class='line'><span class="c">#done</span>
+</span><span class='line'>
+</span><span class='line'><span class="c"># Builds the command that will be used to update the rrdtool database</span>
+</span><span class='line'><span class="nv">str_exec</span><span class="o">=</span><span class="s2">&quot;rrdtool update $DATABASE N&quot;</span>
+</span><span class='line'><span class="k">for </span>idx in <span class="sb">`</span>seq 0 <span class="nv">$ARR_LAST_IDX</span><span class="sb">`</span>
+</span><span class='line'><span class="k">do</span>
+</span><span class='line'>    <span class="c">#Concatenates values to the string</span>
+</span><span class='line'>    <span class="nv">str_exec</span><span class="o">=</span><span class="s2">&quot;$str_exec:${VALUE_FROM_HTML[idx]}&quot;</span>
+</span><span class='line'><span class="k">done</span>
+</span><span class='line'>
+</span><span class='line'><span class="c">#Exec rrdtool update</span>
+</span><span class='line'><span class="nv">$str_exec</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<p>A linha de código que executa o teste da velocidade é a seguinte:  </p>
+
+<p><code>python
+    eval $(python -u tespeed.py -w -s | awk 'BEGIN {FS = ","} ; {print "Download="$1; print "Upload="$2}' )
+</code></p>
+
+<p>Esta linha chama o interpretador <em>python</em>, que executa o <em>tespeed.py</em>, pega os valores de sua saída e armazena nas variáveis <em>Download</em> e <em>Upload</em>.  </p>
+
+<p>Para a leitura dos parâmetros do modem, há a necessidade de acessar a página html gerada por este dispositivo. Esta tarefa é realizada pela seguinte linha:</p>
+
+<p><code>python
+    modem_out=$(wget -qO- --user=$MODEM_USER --password=$MODEM_PASS $MODEM_ADDR$MODEM_DSL_PAGE)
+</code></p>
+
+<p>Esta linha executa o <em>wget</em> e armazena o resultado de sua saída na variável <em>modem_out</em>, utilizando o recurso <em>command substitution</em> do <em>bash</em>. Veja um trecho deste código html armazenado:</p>
+
+<p><code>html
+    &lt;tr class="aodd" id="newline1"&gt;   &lt;td class="aleft" /&gt;   &lt;td style="width: 300px; padding-bottom:5px; padding-top:5px;"&gt;Downstream Current Rate&lt;/td&gt;   &lt;td class="amid" /&gt;   &lt;td style="width: 150px; padding-bottom:5px; padding-top:5px;"&gt;17661&lt;/td&gt;   &lt;td class="aright" /&gt;  &lt;/tr&gt;  &lt;tr&gt;
+     &lt;td class="asep"&gt;&lt;img src="http://cdfreitas.github.com/images/array/t2_left_rowsep.gif" width="9" height="1" /&gt;&lt;/td&gt;
+     &lt;td class="asepleft" /&gt;
+     &lt;td class="asep"&gt;&lt;img src="http://cdfreitas.github.com/images/array/t2_crosssep.gif" width="12" height="1" /&gt;&lt;/td&gt;
+     &lt;td class="asepmid" /&gt;
+     &lt;td class="asepright" /&gt;
+    &lt;/tr&gt;
+    &lt;tr class="aodd" id="newline1"&gt;   &lt;td class="aleft" /&gt;   &lt;td style="width: 300px; padding-bottom:5px; padding-top:5px;"&gt;Upstream Current Rate&lt;/td&gt;   &lt;td class="amid" /&gt;   &lt;td style="width: 150px; padding-bottom:5px; padding-top:5px;"&gt;1187&lt;/td&gt;   &lt;td class="aright" /&gt;  &lt;/tr&gt;  &lt;tr&gt;
+     &lt;td class="asep"&gt;&lt;img src="http://cdfreitas.github.com/images/array/t2_left_rowsep.gif" width="9" height="1" /&gt;&lt;/td&gt;
+     &lt;td class="asepleft" /&gt;
+     &lt;td class="asep"&gt;&lt;img src="http://cdfreitas.github.com/images/array/t2_crosssep.gif" width="12" height="1" /&gt;&lt;/td&gt;
+     &lt;td class="asepmid" /&gt;
+     &lt;td class="asepright" /&gt;
+    &lt;/tr&gt;
+    &lt;tr class="aodd" id="newline1"&gt;   &lt;td class="aleft" /&gt;   &lt;td style="width: 300px; padding-bottom:5px; padding-top:5px;"&gt;Downstream Max Rate&lt;/td&gt;   &lt;td class="amid" /&gt;   &lt;td style="width: 150px; padding-bottom:5px; padding-top:5px;"&gt;20188&lt;/td&gt;   &lt;td class="aright" /&gt;  &lt;/tr&gt;  &lt;tr&gt;
+     &lt;td class="asep"&gt;&lt;img src="http://cdfreitas.github.com/images/array/t2_left_rowsep.gif" width="9" height="1" /&gt;&lt;/td&gt;
+     &lt;td class="asepleft" /&gt;
+     &lt;td class="asep"&gt;&lt;img src="http://cdfreitas.github.com/images/array/t2_crosssep.gif" width="12" height="1" /&gt;&lt;/td&gt;
+     &lt;td class="asepmid" /&gt;
+     &lt;td class="asepright" /&gt;
+    &lt;/tr&gt;
+    &lt;tr class="aodd" id="newline1"&gt;   &lt;td class="aleft" /&gt;   &lt;td style="width: 300px; padding-bottom:5px; padding-top:5px;"&gt;Upstream Max Rate&lt;/td&gt;   &lt;td class="amid" /&gt;   &lt;td style="width: 150px; padding-bottom:5px; padding-top:5px;"&gt;1188&lt;/td&gt;   &lt;td class="aright" /&gt;  &lt;/tr&gt;  &lt;tr&gt;
+     &lt;td class="asep"&gt;&lt;img src="http://cdfreitas.github.com/images/array/t2_left_rowsep.gif" width="9" height="1" /&gt;&lt;/td&gt;
+     &lt;td class="asepleft" /&gt;
+     &lt;td class="asep"&gt;&lt;img src="http://cdfreitas.github.com/images/array/t2_crosssep.gif" width="12" height="1" /&gt;&lt;/td&gt;
+     &lt;td class="asepmid" /&gt;
+     &lt;td class="asepright" /&gt;
+    &lt;/tr&gt;
+</code></p>
+
+<p>As seguintes linhas de código fazem o trabalho de extrair os valores que interessam (as estatísticas do modem):</p>
+
+<p><code>python
+    for idx in `seq 0 $ARR_LAST_IDX`
+    do
+        eval $(echo "$modem_out" | grep "${ARR_MODEM_STRING[$idx]}"  | python extract_html_data.py "VALUE_FROM_HTML[$idx]")
+    done
+</code></p>
+
+<p>Este loop pega, em cada iteração, uma string do array ARR_MODEM_STRING definido em <em>defs.sh</em> e a utiliza para filtrar a saída que foi armazenada na variável modem_out.  </p>
+
+<p>Exemplificando: no caso em que ARR_MODEM_STRING[2]=”Downstream Current Rate”, no arquivo <em>defs.sh</em>, o grep extrairá a seguinte linha:</p>
+
+<p><code>html
+    &lt;tr class="aodd" id="newline1"&gt;   &lt;td class="aleft" /&gt;   &lt;td style="width: 300px; padding-bottom:5px; padding-top:5px;"&gt;Downstream Current Rate&lt;/td&gt;   &lt;td class="amid" /&gt;   &lt;td style="width: 150px; padding-bottom:5px; padding-top:5px;"&gt;17661&lt;/td&gt;   &lt;td class="aright" /&gt;  &lt;/tr&gt;  &lt;tr&gt;
+</code></p>
+
+<p>Esta saída será repassada para o programa python <em>extract_html_data.py</em>, cujo código é reproduzido a seguir:</p>
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span> (extract_html_data.py)</span> <a href='/downloads/code/speedtest/extract_html_data.py'>download</a></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+</pre></td><td class='code'><pre><code class='py'><span class='line'><span class="c"># </span>
+</span><span class='line'><span class="c"># extract_html_data.py</span>
+</span><span class='line'><span class="c"># Extracts the values from html file (statistics values generated by the PowerBox Modem)</span>
+</span><span class='line'><span class="c">#</span>
+</span><span class='line'><span class="c"># 201301 - Christian D Freitas</span>
+</span><span class='line'>
+</span><span class='line'><span class="kn">from</span> <span class="nn">HTMLParser</span> <span class="kn">import</span> <span class="n">HTMLParser</span>
+</span><span class='line'><span class="kn">import</span> <span class="nn">sys</span>
+</span><span class='line'>
+</span><span class='line'><span class="c"># create a subclass and override the handler methods</span>
+</span><span class='line'><span class="k">class</span> <span class="nc">MyHTMLParser</span><span class="p">(</span><span class="n">HTMLParser</span><span class="p">):</span>
+</span><span class='line'>    <span class="n">strdata</span> <span class="o">=</span> <span class="p">[]</span>
+</span><span class='line'>    <span class="k">def</span> <span class="nf">handle_data</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">):</span>
+</span><span class='line'>        <span class="c">#Ignore space (as first char)</span>
+</span><span class='line'>        <span class="k">if</span> <span class="n">data</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">!=</span> <span class="s">&#39; &#39;</span><span class="p">:</span>
+</span><span class='line'>            <span class="c"># Alguns campos &quot;data&quot; possuem a unidade de medida (ex: 10 dB). Como a unidade eh separada por espacco, o split separa a string e somente o valor e adicionado ao array strdata</span>
+</span><span class='line'>            <span class="c"># Gets only value (ignores measurement units)</span>
+</span><span class='line'>            <span class="bp">self</span><span class="o">.</span><span class="n">strdata</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s">&#39; &#39;</span><span class="p">)[</span><span class="mi">0</span><span class="p">])</span>
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'><span class="c"># instantiate the parser and fed it some HTML</span>
+</span><span class='line'><span class="n">parser</span> <span class="o">=</span> <span class="n">MyHTMLParser</span><span class="p">()</span>
+</span><span class='line'><span class="n">parser</span><span class="o">.</span><span class="n">feed</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">stdin</span><span class="o">.</span><span class="n">readlines</span><span class="p">()[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">strip</span><span class="p">(</span><span class="s">&#39;</span><span class="se">\n</span><span class="s">&#39;</span><span class="p">))</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">print</span> <span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">+</span><span class="s">&quot;=&quot;</span><span class="o">+</span><span class="n">parser</span><span class="o">.</span><span class="n">strdata</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'><span class="c">#O html parser encontra duas strings (data), que sao armazenados em um array</span>
+</span><span class='line'><span class="c"># 0 - Uma string que descreve o significado do campo</span>
+</span><span class='line'><span class="c"># 1 - Uma string que contem o valor do campo</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<p>Este programa faz um <em>parse</em> no código html que é lido da entrada padrão (<em>pipe</em> da saída do grep) e extrai o valor de interesse (no código html exibido anteriormente, o valor que será extraído é o <em>17761</em>). Em seguida, o programa escreve este valor na saída padrão, utilizando o parâmetro que foi utilizado na chamada (“VALUE_FROM_HTML[$idx]”).  </p>
+
+<p>Como resultado, no caso da iteração em que a variável <em>idx</em> tem o valor “2”, a saída será: </p>
+
+<pre><code>VALUE_FROM_HTML[2]=17761
+</code></pre>
+
+<p>Este a saída será avaliada pelo “eval”, que armazenará o valor extraído do código html, na variável VALUE_FROM_HTML[].  </p>
+
+<p>É importante ressaltar que nos arrays definidos no arquivo <em>defs.sh</em>, a primeira e a segunda posição (índices 0 e 1) são utizadas para armazenar os valores obtidos pela execução do <em>testpeed</em>, e não valores lidos do modem. E é justamente o que faz as seguintes linhas de código:</p>
+
+<pre><code># Stores the values measured by tespeed in the VALUE_FROM_HTML array (TODO: change this variable name)
+VALUE_FROM_HTML[0]=$Download
+VALUE_FROM_HTML[1]=$Upload
+</code></pre>
+
+<p>Por fim, o trecho final do script  <em>update_database.sh</em> executa o comando <em>rrdtool update</em> para armazenar no banco de dados do RRDTool os valores obtidos. A string que executa este comando é montada dinamicamente, da mesma maneira que foi montada a string do comando de criação do banco de dados (script <em>create_database.sh</em>)</p>
+
+<h2 id="visualizao-dos-dados-coletados-grficos">Visualização dos dados coletados (gráficos)</h2>
+
+<p>Para visualização dos dados coletados, criei uma página <em>web</em>. Desta forma, todos os gráficos gerados pelo RRDTool são facilmente visualizados utilizando um browser. Além disso, a utilização de um servidor <em>web</em> no Raspberry permite acessar a página remotamente, bastando para isso utilizar um serviço de DNS dinâmico (o <em>software</em> do modem GVT implementa a facilidade de DNS dinâmico).  </p>
+
+<p>Usei como <em>template</em> um exemplo de código HTML5 que encontrei <a href="http://cssdeck.com/labs/large-pressable-css3-navigation">neste endereço</a>.  </p>
+
+<p>Código HTML: </p>
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span> (speedtest.html)</span> <a href='/downloads/code/speedtest/speedtest.html'>download</a></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+<span class='line-number'>36</span>
+<span class='line-number'>37</span>
+<span class='line-number'>38</span>
+<span class='line-number'>39</span>
+<span class='line-number'>40</span>
+<span class='line-number'>41</span>
+</pre></td><td class='code'><pre><code class='html'><span class='line'><span class="nt">&lt;html&gt;</span>
+</span><span class='line'><span class="nt">&lt;head&gt;</span>
+</span><span class='line'><span class="nt">&lt;title&gt;</span> ADSL Statistics <span class="nt">&lt;/title&gt;</span>
+</span><span class='line'><span class="nt">&lt;link</span> <span class="na">rel=</span><span class="s">&quot;stylesheet&quot;</span> <span class="na">href=</span><span class="s">&quot;speedtest.css&quot;</span> <span class="na">type=</span><span class="s">&quot;text/css&quot;</span> <span class="nt">/&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="nt">&lt;/head&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="nt">&lt;h1&gt;</span> ADSL Statistics <span class="nt">&lt;/h1&gt;</span>
+</span><span class='line'><span class="nt">&lt;nav</span> <span class="na">id=</span><span class="s">&quot;nav&quot;</span><span class="nt">&gt;</span>	
+</span><span class='line'>	<span class="nt">&lt;ul&gt;</span>		
+</span><span class='line'>		<span class="nt">&lt;li&gt;</span>
+</span><span class='line'>			<span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">&quot;javascript:create_graphs(&#39;d&#39;);&quot;</span><span class="nt">&gt;&lt;span&gt;</span>1 Dia<span class="nt">&lt;/span&gt;&lt;/a&gt;</span>
+</span><span class='line'>		<span class="nt">&lt;/li&gt;</span>
+</span><span class='line'>		<span class="nt">&lt;li&gt;</span>
+</span><span class='line'>			<span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">&quot;javascript:create_graphs(&#39;w&#39;);&quot;</span><span class="nt">&gt;&lt;span&gt;</span>1 Semana<span class="nt">&lt;/span&gt;&lt;/a&gt;</span>
+</span><span class='line'>		<span class="nt">&lt;/li&gt;</span>
+</span><span class='line'>		<span class="nt">&lt;li&gt;</span>
+</span><span class='line'>			<span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">&quot;javascript:create_graphs(&#39;m&#39;);&quot;</span><span class="nt">&gt;&lt;span&gt;</span>1 M<span class="err">&amp;</span>ecircs<span class="nt">&lt;/span&gt;&lt;/a&gt;</span>
+</span><span class='line'>		<span class="nt">&lt;/li&gt;</span>
+</span><span class='line'>		<span class="nt">&lt;li&gt;</span>
+</span><span class='line'>			<span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">&quot;javascript:create_graphs(&#39;y&#39;);&quot;</span><span class="nt">&gt;&lt;span&gt;</span>1 Ano<span class="nt">&lt;/span&gt;&lt;/a&gt;</span>
+</span><span class='line'>		<span class="nt">&lt;/li&gt;</span>
+</span><span class='line'>	<span class="nt">&lt;/ul&gt;</span>
+</span><span class='line'><span class="nt">&lt;/nav&gt;</span>
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'><span class="nt">&lt;iframe</span> <span class="na">id=</span><span class="s">&quot;frame&quot;</span> <span class="na">width=</span><span class="s">&quot;100%&quot;</span>  <span class="na">height =</span><span class="err"> </span><span class="s">&quot;90%&quot;</span><span class="nt">&gt;</span> <span class="nt">&lt;/iframe&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="nt">&lt;script&gt;</span>
+</span><span class='line'><span class="kd">var</span> <span class="nx">my_frame</span><span class="o">=</span><span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s2">&quot;frame&quot;</span><span class="p">);</span>
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'><span class="kd">function</span> <span class="nx">create_graphs</span><span class="p">(</span><span class="nx">str</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'><span class="kd">var</span> <span class="nx">addr</span><span class="o">=</span><span class="s2">&quot;./create_graphs.cgi?&quot;</span><span class="o">+</span><span class="nx">str</span><span class="p">;</span>
+</span><span class='line'><span class="nx">my_frame</span><span class="p">.</span><span class="nx">src</span><span class="o">=</span><span class="nx">addr</span><span class="p">;</span>
+</span><span class='line'><span class="p">};</span>
+</span><span class='line'>
+</span><span class='line'><span class="nt">&lt;/script&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="nt">&lt;/html&gt;</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<p>O código CSS não será apresentado aqui, mas pode ser baixado neste <a href="../../../../../downloads/code/speedtest/speedtest.css">link</a>   </p>
+
+<p>O resultado deste código (html e CSS) é exibido seguir:  </p>
+
+<p><img src="/images/speedtest/web_1.png" alt="pagina_web1" /></p>
+
+<p>Ao clicar em um dos “botões” na página, a função <em>create_graphs</em> será chamada, que por sua vez, executará o <em>cgi</em> <em>create_graphs.cgi</em>, exibido a seguir:  </p>
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span> (create_graphs.cgi)</span> <a href='/downloads/code/speedtest/create_graphs.cgi'>download</a></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="c">#!/bin/bash</span>
+</span><span class='line'>
+</span><span class='line'><span class="nb">source </span>defs.sh
+</span><span class='line'>
+</span><span class='line'><span class="nb">echo</span> <span class="s2">&quot;Content-type: text/html&quot;</span>
+</span><span class='line'><span class="nb">echo</span> <span class="s2">&quot;&quot;</span>
+</span><span class='line'><span class="nb">echo</span> <span class="s2">&quot;&lt;html&gt;&lt;head&gt;&lt;title&gt;CGI&quot;</span>
+</span><span class='line'><span class="nb">echo</span> <span class="s2">&quot;&lt;/title&gt;&lt;/head&gt;&lt;body&gt;&quot;</span>
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'><span class="k">for </span>idx in <span class="nv">$ARR_IDXS</span>
+</span><span class='line'><span class="k">do</span>
+</span><span class='line'><span class="k">   </span><span class="nv">filename</span><span class="o">=</span><span class="s2">&quot;${ARR_GRAPH_FILENAME[$idx]}_$QUERY_STRING.png&quot;</span>
+</span><span class='line'>   rrdtool graph <span class="nv">$filename</span> --start -1<span class="nv">$QUERY_STRING</span> --slope-mode --title<span class="o">=</span><span class="s2">&quot;${ARR_GRAPH_TITLE[$idx]}&quot;</span> --vertical-label<span class="o">=</span><span class="k">${</span><span class="nv">ARR_GRAPH_VERTICAL_LABEL</span><span class="p">[</span><span class="nv">$idx</span><span class="p">]</span><span class="k">}</span> -z <span class="se">\</span>
+</span><span class='line'>   DEF:a<span class="o">=</span><span class="nv">$DATABASE</span>:<span class="k">${</span><span class="nv">ARR_DATABASE_DS_NAME</span><span class="p">[</span><span class="nv">$idx</span><span class="p">]</span><span class="k">}</span>:AVERAGE <span class="se">\</span>
+</span><span class='line'>   LINE:a#FF0000 &gt; /dev/null
+</span><span class='line'>
+</span><span class='line'>   <span class="nb">echo</span> <span class="s2">&quot;&lt;img src=$filename&gt;&quot;</span>
+</span><span class='line'>   <span class="nb">echo</span> <span class="s2">&quot;&lt;br&gt;&quot;</span>
+</span><span class='line'><span class="k">done</span>
+</span><span class='line'>
+</span><span class='line'><span class="nb">echo</span> <span class="s2">&quot;&lt;br&gt;&quot;</span>
+</span><span class='line'><span class="nb">echo</span> <span class="s2">&quot;&lt;center&gt;Information generated on $(date)&lt;/center&gt;&quot;</span>
+</span><span class='line'><span class="nb">echo</span> <span class="s2">&quot;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&quot;</span>
+</span><span class='line'><span class="nb">echo</span> <span class="s2">&quot;&lt;/body&gt;&lt;/html&gt;&quot;</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<p>Este <em>cgi</em> é um script <em>bash</em> que gera dinamicamente o código html que será exibido dentro do <em>iframe</em> definido na página <em>html</em> (<em>speedtest.html</em>).  </p>
+
+<p>O script chama o <em>rrdtool</em> para gerar o gráfico com o parâmetro “-z” (lazy), de forma que os gráficos só são gerados quando houver alteração no gráfico gerado anteriormente, ou no caso de nenhum gráfico ter sido gerado ainda. Esta opção evita a geração desnecessária de gráficos, se o usuário ficar navegando na pagina <em>html</em>.  (importante pois estamos usando um <em>SD card</em> para armazenamento dos dados!)  </p>
+
+<h2 id="instalando-a-tralha-toda">Instalando a “tralha” toda</h2>
+
+<ul>
+  <li>Instalação do lighttpd:</li>
+</ul>
+
+<p><code>
+    sudo apt-get install lightttpd
+</code></p>
+
+<p>Duas pequenas alterações são necessárias para que o lighttpd permita a execução de <em>cgi</em>  <em>bash</em>. Para isto, edite o arquivo <em>lighttpd.conf</em> localizado no diretório <em>/etc</em> e inclua a seguinte linha nas definição do array <em>server.modules</em>:</p>
+
+<p><code>
+    "mod_cgi",
+</code></p>
+
+<p>O resultado final será (trecho do arquivo):</p>
+
+<p><code>
+    server.modules = (
+        "mod_cgi",
+        "mod_access",
+        "mod_alias",
+        "mod_compress",
+        "mod_redirect",
+    #       "mod_rewrite",
+    )
+</code></p>
+
+<p>Adicione também, logo abaixo a definição da variável <em>server.breakagelog</em>, a seguinte linha:</p>
+
+<p><code>
+    cgi.assign                  = ( ".py" =&gt; "/usr/bin/python", ".sh" =&gt; "/bin/bash", ".cgi" =&gt; "/bin/bash" )
+</code></p>
+
+<p>O resultado final será (trecho do arquivo):</p>
+
+<p>```
+    server.port                 = 80</p>
+
+<pre><code>server.breakagelog          = "/var/log/lighttpd/breakage.log"
+cgi.assign                  = ( ".py" =&gt; "/usr/bin/python", ".sh" =&gt; "/bin/bash", ".cgi" =&gt; "/bin/bash" )
+
+index-file.names            = ( "index.php", "index.html", "index.lighttpd.html" )
+</code></pre>
+
+<p>```</p>
+
+<ul>
+  <li>Editar o arquivo <em>/etc/groups</em> e adicionar o usuário corrente do raspberry no grupo <em>www-data</em> (substituir o NOME_DO_USUARIO, na linha abaixo, pelo usuário que rodará o cron no seu raspberry):</li>
+</ul>
+
+<p><code>
+    www-data:x:33:NOME_DO_USUARIO  
+</code></p>
+
+<ul>
+  <li>Instalação do wget:  </li>
+</ul>
+
+<p><code>
+    sudo apt-get install wget
+</code></p>
+
+<ul>
+  <li>Instalação do RRDTool:  </li>
+</ul>
+
+<p><code>
+    sudo apt-get install rrdtool
+</code></p>
+
+<ul>
+  <li>Copiar todos os arquivos para o diretório /var/www/speedtest:  </li>
+</ul>
+
+<p><code>
+    cd /var/www
+    mkdir speedtest
+    cd speedtest
+    cp /ondeosarquivosestao/* .
+</code></p>
+
+<ul>
+  <li>Executar o comando para criar o banco de dados</li>
+</ul>
+
+<p><code>
+    cd /var/www
+    bash create_database.sh
+</code></p>
+
+<ul>
+  <li>Editar o crontab e adicionar as linhas que atualizam o banco de dados</li>
+</ul>
+
+<p><code>
+    crontab -e
+</code></p>
+
+<p>Adicionar as seguintes linhas:</p>
+
+<p><code>
+    00 * * * * cd /var/www/speedtest; bash update_database.sh
+</code></p>
+
+<p>Com esta configuração do cron, o script <em>update_database.sh</em> será executado de hora em hora, coletando os dados e atualizando o banco de dados do RRDTool.</p>
+
+<h2 id="resultado-final">Resultado final</h2>
+
+<p>Para abrir a página onde os gráficos gerados serão exibidos, digite o seguinte endereço em seu browser: <em>http://endereco_ip_do_raspberry/speedtest/speedtest.html</em>.  </p>
+
+<p>O resultado final, quando a página abrigada no servidor <em>www</em> for exibida pelo browser, para os gráficos do dia:</p>
+
+<p><img src="/images/speedtest/web_adsl_diario.png" alt="página_web2" /></p>
+
+<p>Para os gráficos da semana:   </p>
+
+<p><img src="/images/speedtest/web_adsl_semana.png" alt="página_web3" /></p>
+
+<p>E aqui, o Raspberry, sem case, sem local definido, repousando temporariamente sobre o meu modem…</p>
+
+<p><img src="/images/speedtest/raspberry.jpg" alt="Raspberry" /></p>
+
+]]></content>
+  </entry>
+  
+</feed>
