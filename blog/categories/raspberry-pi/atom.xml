@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Category: Raspberry Pi | NOP]]></title>
-  <link href="http://cdfreitas.github.com/blog/categories/raspberry-pi/atom.xml" rel="self"/>
-  <link href="http://cdfreitas.github.com/"/>
-  <updated>2013-04-19T18:27:24-03:00</updated>
-  <id>http://cdfreitas.github.com/</id>
+  <link href="http://cdfreitas.github.io/blog/categories/raspberry-pi/atom.xml" rel="self"/>
+  <link href="http://cdfreitas.github.io/"/>
+  <updated>2013-04-19T18:29:52-03:00</updated>
+  <id>http://cdfreitas.github.io/</id>
   <author>
     <name><![CDATA[Christian D. Freitas]]></name>
     
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[Raspberry Pi - Seu provedor de banda larga entrega o prometido?]]></title>
-    <link href="http://cdfreitas.github.com/blog/2013/04/19/raspberry-pi-seu-provedor-de-banda-larga-entrega-o-prometido/"/>
+    <link href="http://cdfreitas.github.io/blog/2013/04/19/raspberry-pi-seu-provedor-de-banda-larga-entrega-o-prometido/"/>
     <updated>2013-04-19T18:04:00-03:00</updated>
-    <id>http://cdfreitas.github.com/blog/2013/04/19/raspberry-pi-seu-provedor-de-banda-larga-entrega-o-prometido</id>
+    <id>http://cdfreitas.github.io/blog/2013/04/19/raspberry-pi-seu-provedor-de-banda-larga-entrega-o-prometido</id>
     <content type="html"><![CDATA[<h2 id="o-raspberry-pi">O Raspberry Pi</h2>
 
 <p>Há algum tempo, comprei uma placa <a href="http://raspberrypi.org">Raspberry Pi</a> com o objetivo de conhecer o hardware e medir o desempenho do Linux nela.
@@ -593,30 +593,30 @@ Enquanto a plaquinha não chegava, as ideias iam surgindo. No início, pensei em
 
 <p><code>html
     &lt;tr class="aodd" id="newline1"&gt;   &lt;td class="aleft" /&gt;   &lt;td style="width: 300px; padding-bottom:5px; padding-top:5px;"&gt;Downstream Current Rate&lt;/td&gt;   &lt;td class="amid" /&gt;   &lt;td style="width: 150px; padding-bottom:5px; padding-top:5px;"&gt;17661&lt;/td&gt;   &lt;td class="aright" /&gt;  &lt;/tr&gt;  &lt;tr&gt;
-     &lt;td class="asep"&gt;&lt;img src="http://cdfreitas.github.com/images/array/t2_left_rowsep.gif" width="9" height="1" /&gt;&lt;/td&gt;
+     &lt;td class="asep"&gt;&lt;img src="http://cdfreitas.github.io/images/array/t2_left_rowsep.gif" width="9" height="1" /&gt;&lt;/td&gt;
      &lt;td class="asepleft" /&gt;
-     &lt;td class="asep"&gt;&lt;img src="http://cdfreitas.github.com/images/array/t2_crosssep.gif" width="12" height="1" /&gt;&lt;/td&gt;
+     &lt;td class="asep"&gt;&lt;img src="http://cdfreitas.github.io/images/array/t2_crosssep.gif" width="12" height="1" /&gt;&lt;/td&gt;
      &lt;td class="asepmid" /&gt;
      &lt;td class="asepright" /&gt;
     &lt;/tr&gt;
     &lt;tr class="aodd" id="newline1"&gt;   &lt;td class="aleft" /&gt;   &lt;td style="width: 300px; padding-bottom:5px; padding-top:5px;"&gt;Upstream Current Rate&lt;/td&gt;   &lt;td class="amid" /&gt;   &lt;td style="width: 150px; padding-bottom:5px; padding-top:5px;"&gt;1187&lt;/td&gt;   &lt;td class="aright" /&gt;  &lt;/tr&gt;  &lt;tr&gt;
-     &lt;td class="asep"&gt;&lt;img src="http://cdfreitas.github.com/images/array/t2_left_rowsep.gif" width="9" height="1" /&gt;&lt;/td&gt;
+     &lt;td class="asep"&gt;&lt;img src="http://cdfreitas.github.io/images/array/t2_left_rowsep.gif" width="9" height="1" /&gt;&lt;/td&gt;
      &lt;td class="asepleft" /&gt;
-     &lt;td class="asep"&gt;&lt;img src="http://cdfreitas.github.com/images/array/t2_crosssep.gif" width="12" height="1" /&gt;&lt;/td&gt;
+     &lt;td class="asep"&gt;&lt;img src="http://cdfreitas.github.io/images/array/t2_crosssep.gif" width="12" height="1" /&gt;&lt;/td&gt;
      &lt;td class="asepmid" /&gt;
      &lt;td class="asepright" /&gt;
     &lt;/tr&gt;
     &lt;tr class="aodd" id="newline1"&gt;   &lt;td class="aleft" /&gt;   &lt;td style="width: 300px; padding-bottom:5px; padding-top:5px;"&gt;Downstream Max Rate&lt;/td&gt;   &lt;td class="amid" /&gt;   &lt;td style="width: 150px; padding-bottom:5px; padding-top:5px;"&gt;20188&lt;/td&gt;   &lt;td class="aright" /&gt;  &lt;/tr&gt;  &lt;tr&gt;
-     &lt;td class="asep"&gt;&lt;img src="http://cdfreitas.github.com/images/array/t2_left_rowsep.gif" width="9" height="1" /&gt;&lt;/td&gt;
+     &lt;td class="asep"&gt;&lt;img src="http://cdfreitas.github.io/images/array/t2_left_rowsep.gif" width="9" height="1" /&gt;&lt;/td&gt;
      &lt;td class="asepleft" /&gt;
-     &lt;td class="asep"&gt;&lt;img src="http://cdfreitas.github.com/images/array/t2_crosssep.gif" width="12" height="1" /&gt;&lt;/td&gt;
+     &lt;td class="asep"&gt;&lt;img src="http://cdfreitas.github.io/images/array/t2_crosssep.gif" width="12" height="1" /&gt;&lt;/td&gt;
      &lt;td class="asepmid" /&gt;
      &lt;td class="asepright" /&gt;
     &lt;/tr&gt;
     &lt;tr class="aodd" id="newline1"&gt;   &lt;td class="aleft" /&gt;   &lt;td style="width: 300px; padding-bottom:5px; padding-top:5px;"&gt;Upstream Max Rate&lt;/td&gt;   &lt;td class="amid" /&gt;   &lt;td style="width: 150px; padding-bottom:5px; padding-top:5px;"&gt;1188&lt;/td&gt;   &lt;td class="aright" /&gt;  &lt;/tr&gt;  &lt;tr&gt;
-     &lt;td class="asep"&gt;&lt;img src="http://cdfreitas.github.com/images/array/t2_left_rowsep.gif" width="9" height="1" /&gt;&lt;/td&gt;
+     &lt;td class="asep"&gt;&lt;img src="http://cdfreitas.github.io/images/array/t2_left_rowsep.gif" width="9" height="1" /&gt;&lt;/td&gt;
      &lt;td class="asepleft" /&gt;
-     &lt;td class="asep"&gt;&lt;img src="http://cdfreitas.github.com/images/array/t2_crosssep.gif" width="12" height="1" /&gt;&lt;/td&gt;
+     &lt;td class="asep"&gt;&lt;img src="http://cdfreitas.github.io/images/array/t2_crosssep.gif" width="12" height="1" /&gt;&lt;/td&gt;
      &lt;td class="asepmid" /&gt;
      &lt;td class="asepright" /&gt;
     &lt;/tr&gt;

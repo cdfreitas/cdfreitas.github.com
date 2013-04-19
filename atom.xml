@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[NOP]]></title>
-  <link href="http://cdfreitas.github.com/atom.xml" rel="self"/>
-  <link href="http://cdfreitas.github.com/"/>
-  <updated>2013-04-19T18:27:24-03:00</updated>
-  <id>http://cdfreitas.github.com/</id>
+  <link href="http://cdfreitas.github.io/atom.xml" rel="self"/>
+  <link href="http://cdfreitas.github.io/"/>
+  <updated>2013-04-19T18:29:52-03:00</updated>
+  <id>http://cdfreitas.github.io/</id>
   <author>
     <name><![CDATA[Christian D. Freitas]]></name>
     
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[Raspberry Pi - Seu provedor de banda larga entrega o prometido?]]></title>
-    <link href="http://cdfreitas.github.com/blog/2013/04/19/raspberry-pi-seu-provedor-de-banda-larga-entrega-o-prometido/"/>
+    <link href="http://cdfreitas.github.io/blog/2013/04/19/raspberry-pi-seu-provedor-de-banda-larga-entrega-o-prometido/"/>
     <updated>2013-04-19T18:04:00-03:00</updated>
-    <id>http://cdfreitas.github.com/blog/2013/04/19/raspberry-pi-seu-provedor-de-banda-larga-entrega-o-prometido</id>
+    <id>http://cdfreitas.github.io/blog/2013/04/19/raspberry-pi-seu-provedor-de-banda-larga-entrega-o-prometido</id>
     <content type="html"><![CDATA[<h2 id="o-raspberry-pi">O Raspberry Pi</h2>
 
 <p>Há algum tempo, comprei uma placa <a href="http://raspberrypi.org">Raspberry Pi</a> com o objetivo de conhecer o hardware e medir o desempenho do Linux nela.
@@ -63,7 +63,7 @@ Enquanto a plaquinha não chegava, as ideias iam surgindo. No início, pensei em
 
 <h2 id="script-de-definio-de-parmetros-defssh">Script de definição de parâmetros (defs.sh)</h2>
 
-<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span> (defs.sh)</span> <a href="http://cdfreitas.github.com/downloads/code/speedtest/defs.sh">download</a></figcaption>
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span> (defs.sh)</span> <a href="http://cdfreitas.github.io/downloads/code/speedtest/defs.sh">download</a></figcaption>
  <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
 <span class="line-number">2</span>
 <span class="line-number">3</span>
@@ -355,7 +355,7 @@ Enquanto a plaquinha não chegava, as ideias iam surgindo. No início, pensei em
 
 <p>Este script cria o banco de dados que será utilizado pelo RRDTool para armazenar os valores medidos e capturados do modem.</p>
 
-<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span> (create_database.sh)</span> <a href="http://cdfreitas.github.com/downloads/code/speedtest/create_database.sh">download</a></figcaption>
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span> (create_database.sh)</span> <a href="http://cdfreitas.github.io/downloads/code/speedtest/create_database.sh">download</a></figcaption>
  <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
 <span class="line-number">2</span>
 <span class="line-number">3</span>
@@ -482,7 +482,7 @@ Enquanto a plaquinha não chegava, as ideias iam surgindo. No início, pensei em
 
 <p>Este script, um dos mais importantes do projeto, é responsável pela atualização do banco de dados.  </p>
 
-<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span> (update_database.sh)</span> <a href="http://cdfreitas.github.com/downloads/code/speedtest/update_database.sh">download</a></figcaption>
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span> (update_database.sh)</span> <a href="http://cdfreitas.github.io/downloads/code/speedtest/update_database.sh">download</a></figcaption>
  <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
 <span class="line-number">2</span>
 <span class="line-number">3</span>
@@ -671,7 +671,7 @@ Enquanto a plaquinha não chegava, as ideias iam surgindo. No início, pensei em
 
 <p>Esta saída será repassada para o programa python <em>extract_html_data.py</em>, cujo código é reproduzido a seguir:</p>
 
-<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span> (extract_html_data.py)</span> <a href="http://cdfreitas.github.com/downloads/code/speedtest/extract_html_data.py">download</a></figcaption>
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span> (extract_html_data.py)</span> <a href="http://cdfreitas.github.io/downloads/code/speedtest/extract_html_data.py">download</a></figcaption>
  <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
 <span class="line-number">2</span>
 <span class="line-number">3</span>
@@ -760,7 +760,7 @@ VALUE_FROM_HTML[1]=$Upload
 
 <p>Código HTML: </p>
 
-<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span> (speedtest.html)</span> <a href="http://cdfreitas.github.com/downloads/code/speedtest/speedtest.html">download</a></figcaption>
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span> (speedtest.html)</span> <a href="http://cdfreitas.github.io/downloads/code/speedtest/speedtest.html">download</a></figcaption>
  <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
 <span class="line-number">2</span>
 <span class="line-number">3</span>
@@ -849,11 +849,11 @@ VALUE_FROM_HTML[1]=$Upload
 
 <p>O resultado deste código (html e CSS) é exibido seguir:  </p>
 
-<p><img src="http://cdfreitas.github.com/images/speedtest/web_1.png" alt="pagina_web1" /></p>
+<p><img src="http://cdfreitas.github.io/images/speedtest/web_1.png" alt="pagina_web1" /></p>
 
 <p>Ao clicar em um dos “botões” na página, a função <em>create_graphs</em> será chamada, que por sua vez, executará o <em>cgi</em> <em>create_graphs.cgi</em>, exibido a seguir:  </p>
 
-<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span> (create_graphs.cgi)</span> <a href="http://cdfreitas.github.com/downloads/code/speedtest/create_graphs.cgi">download</a></figcaption>
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span> (create_graphs.cgi)</span> <a href="http://cdfreitas.github.io/downloads/code/speedtest/create_graphs.cgi">download</a></figcaption>
  <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
 <span class="line-number">2</span>
 <span class="line-number">3</span>
@@ -1038,15 +1038,15 @@ VALUE_FROM_HTML[1]=$Upload
 
 <p>O resultado final, quando a página abrigada no servidor <em>www</em> for exibida pelo browser, para os gráficos do dia:</p>
 
-<p><img src="http://cdfreitas.github.com/images/speedtest/web_adsl_diario.png" alt="página_web2" /></p>
+<p><img src="http://cdfreitas.github.io/images/speedtest/web_adsl_diario.png" alt="página_web2" /></p>
 
 <p>Para os gráficos da semana:   </p>
 
-<p><img src="http://cdfreitas.github.com/images/speedtest/web_adsl_semana.png" alt="página_web3" /></p>
+<p><img src="http://cdfreitas.github.io/images/speedtest/web_adsl_semana.png" alt="página_web3" /></p>
 
 <p>E aqui, o Raspberry, sem case, sem local definido, repousando temporariamente sobre o meu modem…</p>
 
-<p><img src="http://cdfreitas.github.com/images/speedtest/raspberry.jpg" alt="Raspberry" /></p>
+<p><img src="http://cdfreitas.github.io/images/speedtest/raspberry.jpg" alt="Raspberry" /></p>
 
 ]]></content>
   </entry>

@@ -1,4 +1,4 @@
 User-agent: *
 Disallow: 
 
-Sitemap: http://cdfreitas.github.com/sitemap.xml 
+Sitemap: http://cdfreitas.github.io/sitemap.xml 
