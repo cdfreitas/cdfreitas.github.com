@@ -4,11 +4,7 @@
         <loc>
             http://cdfreitas.github.io/blog/2013/04/19/raspberry-pi-seu-provedor-de-banda-larga-entrega-o-prometido/
         </loc>
-        <lastmod>2013-04-19T18:15:02-03:00</lastmod>
-    </url>
-    <url>
-        <loc>http://cdfreitas.github.io/</loc>
-        <lastmod>2013-04-19T18:15:02-03:00</lastmod>
+        <lastmod>2013-04-21T00:31:06-03:00</lastmod>
     </url>
     <url>
         <loc>http://cdfreitas.github.io/robots.txt</loc>
@@ -16,6 +12,10 @@
     </url>
     <url>
         <loc>http://cdfreitas.github.io/blog/archives/</loc>
-        <lastmod>2013-04-19T18:15:02-03:00</lastmod>
+        <lastmod>2013-04-21T00:31:06-03:00</lastmod>
+    </url>
+    <url>
+        <loc>http://cdfreitas.github.io/</loc>
+        <lastmod>2013-04-21T00:31:06-03:00</lastmod>
     </url>
 </urlset>

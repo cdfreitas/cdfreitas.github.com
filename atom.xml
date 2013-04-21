@@ -4,7 +4,7 @@
   <title><![CDATA[NOP]]></title>
   <link href="http://cdfreitas.github.io/atom.xml" rel="self"/>
   <link href="http://cdfreitas.github.io/"/>
-  <updated>2013-04-19T18:38:48-03:00</updated>
+  <updated>2013-04-21T00:31:25-03:00</updated>
   <id>http://cdfreitas.github.io/</id>
   <author>
     <name><![CDATA[Christian D. Freitas]]></name>
@@ -1047,6 +1047,8 @@ VALUE_FROM_HTML[1]=$Upload
 <p>E aqui, o Raspberry, sem case, sem local definido, repousando temporariamente sobre o meu modem…</p>
 
 <p><img src="http://cdfreitas.github.io/images/speedtest/raspberry.jpg" alt="Raspberry" /></p>
+
+<p>Os códigos estão disponíveis no repositório <a href="https://github.com/cdfreitas/speedtest">Github</a></p>
 
 ]]></content>
   </entry>

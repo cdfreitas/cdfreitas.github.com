@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Raspberry Pi | NOP]]></title>
   <link href="http://cdfreitas.github.io/blog/categories/raspberry-pi/atom.xml" rel="self"/>
   <link href="http://cdfreitas.github.io/"/>
-  <updated>2013-04-19T18:38:48-03:00</updated>
+  <updated>2013-04-21T00:31:25-03:00</updated>
   <id>http://cdfreitas.github.io/</id>
   <author>
     <name><![CDATA[Christian D. Freitas]]></name>
@@ -1003,6 +1003,8 @@ index-file.names            = ( "index.php", "index.html", "index.lighttpd.html"
 <p>E aqui, o Raspberry, sem case, sem local definido, repousando temporariamente sobre o meu modem…</p>
 
 <p><img src="/images/speedtest/raspberry.jpg" alt="Raspberry" /></p>
+
+<p>Os códigos estão disponíveis no repositório <a href="https://github.com/cdfreitas/speedtest">Github</a></p>
 
 ]]></content>
   </entry>
