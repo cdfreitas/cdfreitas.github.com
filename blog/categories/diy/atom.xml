@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
 
-  <title><![CDATA[Category: Raspberry Pi | NOP]]></title>
-  <link href="http://cdfreitas.github.io/blog/categories/raspberry-pi/atom.xml" rel="self"/>
+  <title><![CDATA[Category: DIY | NOP]]></title>
+  <link href="http://cdfreitas.github.io/blog/categories/diy/atom.xml" rel="self"/>
   <link href="http://cdfreitas.github.io/"/>
   <updated>2013-06-13T23:52:36-03:00</updated>
   <id>http://cdfreitas.github.io/</id>
@@ -12,6 +12,99 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Rebel XT - Removendo fungos do CCD]]></title>
+    <link href="http://cdfreitas.github.io/blog/2013/04/22/rebel-xt-removendo-fungos-do-ccd/"/>
+    <updated>2013-04-22T19:24:00-03:00</updated>
+    <id>http://cdfreitas.github.io/blog/2013/04/22/rebel-xt-removendo-fungos-do-ccd</id>
+    <content type="html"><![CDATA[<h2 id="rebel-xt---removendo-fungos-da-parte-interna-do-vidro-do-ccd">Rebel XT - Removendo fungos da parte interna do vidro do CCD</h2>
+
+<p>Existem alguns reparos domésticos (os DIY) que ao terminar você pensa: “Não vai durar um mês!”. <br />
+Quando encerrei o “reparo” que apresento aqui, pensei que se tratava de mais um trabalho em vão. Mas no final das contas foi um caso de sucesso, porque o trabalho foi realizado em maio de 2011 e só fui me dar conta dele quando precisei realizar um outro reparo na Rebel XT (falarei sobre este outro reparo em um outro post, em uma outra hora).
+<!-- more --></p>
+
+<h2 id="o-problema">O Problema</h2>
+
+<p>Desde o início de 2011 eu vinha reparando umas pequenas manchas pretas na lateral esquerda e no canto inferior direito das minhas fotos. Estas manchas começaram a tomar forma de uma pequena teia de aranha, e começaram a crescer rapidamente.  </p>
+
+<p>Fiz algumas pesquisas no Google e cheguei a conclusão de que se tratava de fungo. </p>
+
+<p>Veja na foto abaixo aparência deste fungos. <em>(Clique na imagem para ver a versão original da foto)</em></p>
+
+<p><a href="/images/rebelxt_ccd_fungus/IMG_4212.JPG"><img src="/images/rebelxt_ccd_fungus/foto_aviao_fungos.JPG" alt="aviao" /></a></p>
+
+<h2 id="a-soluo">A solução</h2>
+
+<p>Inicialmente achei que seria fácil me livrar desta teia de aranha. Bastaria uma limpeza tradicional no CCD e pronto.</p>
+
+<p>Após diversas tentativas, descobri que o meu problema era um pouco mais grave: o fungo não estava na parte externa do vidro do CCD. Estava por dentro!  </p>
+
+<p>E lá se foram mais algumas buscas no Google… Li em alguns fóruns que este problema estava ocorrendo em outras Rebel XT e tinham a mesma característica. Algumas pessoas começaram a desconfiar da cola usada para fixar o vidro/filtro do CCD. Outras, acharam que era um problema de contaminação na linha de montagem. <em>(vou ficar devendo os links destas discussões que achei na net. Não salvei nenhum, na época)</em></p>
+
+<p>A solução que todos apresentavam era a mesma: enviar a câmera para uma autorizada Canon.   </p>
+
+<p>De cara, descartei esta opção pelos seguintes motivos:</p>
+
+<p>1) Isto me custaria uma pequena fortuna<br />
+2) A câmera já tinha uma certa idade (foi adquirida por volta de 2003) e comprar uma nova seria mais interessante<br />
+3) Mandar consertar não é tão divertido como tentar o reparo em casa!  (mesmo correndo o risco de ter o dobro de dor de cabeça e, no final, terminar com o equipamento mais danificado do que antes)   </p>
+
+<p>Lembrei, então, que havia lido em alguns sites uma conversão na Rebel XT para permitir fotografia no espectro infravermelho. Para realizar esta conversão há a necessidade de desmontar a câmera e substituir um vidro/filtro do CCD. E é justamente nesta região o fungo estava morando!  </p>
+
+<p>Para limpar minha câmera, usei este <a href="http://www.lifepixel.com/tutorials/infrared-diy-tutorials/canon-rebel-xt-350d">site</a> como referência. Observe que ele apresenta um passo a passo para realizar a transformação (que, no meu caso foi apenas uma limpeza).</p>
+
+<p>Antes de começar a desmontar a câmera, separei todas as ferramentas que usaria e as coloquei na bancada.</p>
+
+<p><img src="/images/rebelxt_ccd_fungus/ferramentas.jpg" alt="Ferramentas" /></p>
+
+<p>Para a limpeza decidi usar o álcool isopropílico. Lembro-me de ter lido alguém falando que o fungo que aparece nestes vidros (lentes e no CCD) são resistentes e não morrem com o álcool isopropílico. Li também sobre diversas fórmulas para limpar e matar fungos, mas a maioria era tóxica e, além disso, fiquei com receios de ter dificuldade de remover estes produtos do vidro. Como eu sempre usei o isopropílico pra limpar praticamente tudo, decidi ficar com ele mesmo.  </p>
+
+<p>Após a separação das ferramentas, tirei uma foto para ver a localização dos fungos. Usei o monitor do computador, exibindo uma página em branco do libreoffice writer:</p>
+
+<p><img src="/images/rebelxt_ccd_fungus/foto_monitor_fungos.jpg" alt="branco" /></p>
+
+<p>Durante a desmontagem, fui separando os parafusos de cada etapa e, com o auxílio de uma fita, colando-os ao lado das figuras correspondentes, para facilitar a minha vida na hora da montagem:</p>
+
+<p><img src="/images/rebelxt_ccd_fungus/parafusos.jpg" alt="parafusos" /></p>
+
+<p>Este processo foi bem útil e acabei adotando para desmontar qualquer equipamento que possua muitos parafusos diferentes. Na realidade eu mudei um pouco o procedimento e hoje em dia eu coloco os parafusos em copinhos de café numerados. Apenas anoto na página correspondente o número do copinho em que os parafusos estão.</p>
+
+<p>Aqui o registro do trabalho de desmontagem:</p>
+
+<p><img src="/images/rebelxt_ccd_fungus/trabalho.jpg" alt="trabalho" /></p>
+
+<p>Até chegar ao CCD:</p>
+
+<p><img src="/images/rebelxt_ccd_fungus/ccd.jpg" alt="trabalho" /></p>
+
+<p>A partir daqui foi só remover o CCD da câmera e, em seguida, remover o vidro/filtro do CCD. O fungo não estava neste filtro. Estava no vidro que fica colado no sensor.  </p>
+
+<p>Não registrei o procedimento de limpeza pois não quis expor o CCD à sujeira e luminosidade por muito tempo. O que fiz foi bastante simples: utilizei uma espátula de plástico (comprei uma baratinha e cortei na largura do CCD). Nesta espátula enrolei um papel especial para limpeza de lentes de câmeras e pinguei umas duas gotas de álcool isopropílico. Após isso pressionei a espátula sobre o vidro do CCD e repeti o procedimento várias vezes, até que o CCD ficasse completamente limpo.</p>
+
+<p>A imagem a seguir, retirada do site <a href="http://www.lifepixel.com/tutorials/infrared-diy-tutorials/canon-rebel-xt-350d">lifepixel</a>, mostra em qual elemento o fungo estava (seta vermelha).  </p>
+
+<p><img src="/images/rebelxt_ccd_fungus/canon-infrared-350d-rebel-xt-20.jpg" alt="lifepixel" /></p>
+
+<p>Após isso, foi só montar e testar.  </p>
+
+<p>Não consegui recuperar as fotografias que utilizei no teste da máquina, mas seguem duas, relativamente recentes. Observe que o CCD ainda continua sem fungos ! (por enquanto, o isopropílico está com nota 10!)</p>
+
+<p>Essa é de ontem:</p>
+
+<p><img src="/images/rebelxt_ccd_fungus/foto_monitor_semfungo.jpg" alt="monitor_semfungo" /></p>
+
+<p>Também de ontem:</p>
+
+<p><img src="/images/rebelxt_ccd_fungus/foto_crucifixo_semfungos.jpg" alt="recente2" /></p>
+
+<p>Um pouco mais antiga:</p>
+
+<p><a href="/images/rebelxt_ccd_fungus/IMG_0803.JPG"><img src="/images/rebelxt_ccd_fungus/cupcakes_semfungos.jpg" alt="recente1" /></a></p>
+
+<p><em>Aviso: este texto tem objetivo meramente informativo. O autor não se reponsabiliza por qualquer dano causado na tentativa de repetir o procedimento aqui demonstrado. Em resumo: se não sabe o que está fazendo, é melhor parar antes que….</em>  </p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Raspberry Pi - Seu provedor de banda larga entrega o prometido?]]></title>
