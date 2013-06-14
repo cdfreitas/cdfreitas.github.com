@@ -4,7 +4,7 @@
   <title><![CDATA[Category: DIY | NOP]]></title>
   <link href="http://cdfreitas.github.io/blog/categories/diy/atom.xml" rel="self"/>
   <link href="http://cdfreitas.github.io/"/>
-  <updated>2013-06-13T23:52:36-03:00</updated>
+  <updated>2013-06-13T23:54:33-03:00</updated>
   <id>http://cdfreitas.github.io/</id>
   <author>
     <name><![CDATA[Christian D. Freitas]]></name>
@@ -12,6 +12,60 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Lâmpadas fluorescentes que piscam]]></title>
+    <link href="http://cdfreitas.github.io/blog/2013/06/11/lampadas-fluorescentes-que-piscam/"/>
+    <updated>2013-06-11T21:52:00-03:00</updated>
+    <id>http://cdfreitas.github.io/blog/2013/06/11/lampadas-fluorescentes-que-piscam</id>
+    <content type="html"><![CDATA[<p>Eu sempre observei que algumas lâmpadas fluorescentes compactas instaladas aqui em casa piscam de vez em quando. Nunca me importei com isso e nem tentei entender o motivo, pelo fato de as “piscadas” não me incomodarem.  A única coisa que me chamou a atenção foi o fato de elas piscarem num intervalo relativamente constante (cerca de 4 minutos entre cada piscada)
+<!-- more --></p>
+
+<p>O tipo de lâmpada fluorescente compacta a que estou me referindo é aquele que usa o bocal do tipo rosca, que vem substituindo as lâmpadas incandescentes. <br />
+<img src="/images/lampada_fluorescente/lampada.jpg" alt="Lampada" /></p>
+
+<p>Pois então… A minha convivência harmoniosa com as “lâmpadas piscantes” durou anos. Que eu me lembre, somente as da varanda e a de um quarto davam uma piscadela.   </p>
+
+<p>Até que um dia a lâmpada do quarto do casal queimou. Comprei outra lâmpada, instalei no local e a lâmpada apresentou este comportamento de piscar.  </p>
+
+<p>Num primeiro momento, cheguei a desconfiar de uma lâmpada defeituosa, afinal de contas a lâmpada que estava instalada anteriormente não piscava.    </p>
+
+<p>Como eu havia comprado várias lâmpadas (todas da mesma marca), troquei a lâmpada por uma outra e aguardei um tempinho e…. piscou também.  </p>
+
+<p>Bom, por mim, a lâmpada ficava desse jeito. Acontece que esta lâmpada resolveu piscar dentro de um rescinto onde até luz ultravioleta é proibida pela dona da casa: minha esposa não dorme se tiver algum vestígio de luz no quarto. Imagina então, se tiver uma lâmpada que pisca numa frequência relativamente constante…   </p>
+
+<p>Resultado: tive que investigar o problema.   </p>
+
+<p>Peguei um multímetro e fui medir a tensão no bocal da lâmpada, com os interruptores desligados… Opa!!! Apareceram 40V !!!</p>
+
+<p>Daí, medi a tensão com a lâmpada enroscada no bocal. A tensão ia subindo até chegar uns 25-30V e a lâmpada piscava. Daí a tensão caía para um valor próximo de zero e começava todo o ciclo. Deduzi que algum capacitor dentro do reator estava sendo carregado e que essa tensão de aproximadamente 25V era suficiente para que o circuito do reator fizesse a lâmpada piscar. (o que o reator eletrônico faz, basicamente, é piscar a lâmpada em uma frequência bem alta).   </p>
+
+<p>Pois bem… e os 40 Volts ? Apareceram como ?   </p>
+
+<p>Pois é… não sei até agora!   </p>
+
+<p>Mas existem algumas possibilidades:</p>
+
+<ul>
+  <li>A iluminação deste quarto está ligada em um sistema three-way (daqueles que têm dois interruptores e você pode acender ou apagar a lâmpada por qualquer um deles. Para saber mais, <a href="http://www.eletrica.info/three-way-interruptor-paralelo-o-que-e-como-funciona/">clique aqui</a> ). Em minhas buscas no Google, li alguma coisa falando que as lâmpadas fluorescentes, quando instaladas desta forma, tendem a apresentar este comportamento. Uma das explicações falava da possibilidade de indução de tensão nos fios que interligam os interruptores (os fios de retorno)</li>
+  <li>Um dos interruptores pode estar com fuga (não abrindo o circuito corretamente). (descartei esta opção testando os interruptores)</li>
+  <li>A lâmpada pode estar com uma de suas extremidades ligada diretamente na fase, ao invés do neutro (descartei esta opção com uma inspeção no quadro de distribuição e teste com o multímetro)</li>
+</ul>
+
+<p>Apesar de ser a mais estranha, a primeira das possibilidades é a que está parecendo a mais provável. Ainda não me convenci dela, mas…</p>
+
+<p>E, para resolver o problema, até que eu tenha tempo para descobrir de onde os 40V estão vindo, a solução foi a seguinte:</p>
+
+<p><img src="/images/lampada_fluorescente/resistor.jpg" alt="resistor" /></p>
+
+<p>Um resistor de 440KOhms ligado em paralelo com a lâmpada.</p>
+
+<p>Ah!! E a outra lâmpada que queimou? Por que não piscava?   </p>
+
+<p>Das duas uma.. Ou o reator dela tinha alguma proteção contra esta tensão mais baixa na entrada ou, ele era ineficiente e estes 40V não eram suficientes para fazer a lâmpada piscar e ficava armazenado no capacitor…</p>
+
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Rebel XT - Removendo fungos do CCD]]></title>
