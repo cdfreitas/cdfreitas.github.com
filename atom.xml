@@ -4,7 +4,7 @@
   <title><![CDATA[NOP]]></title>
   <link href="http://cdfreitas.github.io/atom.xml" rel="self"/>
   <link href="http://cdfreitas.github.io/"/>
-  <updated>2013-06-13T23:55:56-03:00</updated>
+  <updated>2013-06-16T23:31:28-03:00</updated>
   <id>http://cdfreitas.github.io/</id>
   <author>
     <name><![CDATA[Christian D. Freitas]]></name>
@@ -36,7 +36,7 @@
 
 <p>Resultado: tive que investigar o problema.   </p>
 
-<p>Peguei um multímetro e fui medir a tensão no bocal da lâmpada, com os interruptores desligados… Opa!!! Apareceram 40V !!!</p>
+<p>Peguei um multímetro e fui medir a tensão no bocal da lâmpada, com os interruptores desligados… Opa!!! Apareceram <strong>40V</strong> !!!</p>
 
 <p>Daí, medi a tensão com a lâmpada enroscada no bocal. A tensão ia subindo até chegar uns 25-30V e a lâmpada piscava. Daí a tensão caía para um valor próximo de zero e começava todo o ciclo. Deduzi que algum capacitor dentro do reator estava sendo carregado e que essa tensão de aproximadamente 25V era suficiente para que o circuito do reator fizesse a lâmpada piscar. (o que o reator eletrônico faz, basicamente, é piscar a lâmpada em uma frequência bem alta).   </p>
 
@@ -47,14 +47,14 @@
 <p>Mas existem algumas possibilidades:</p>
 
 <ul>
-  <li>A iluminação deste quarto está ligada em um sistema three-way (daqueles que têm dois interruptores e você pode acender ou apagar a lâmpada por qualquer um deles. Para saber mais, <a href="http://www.eletrica.info/three-way-interruptor-paralelo-o-que-e-como-funciona/">clique aqui</a> ). Em minhas buscas no Google, li alguma coisa falando que as lâmpadas fluorescentes, quando instaladas desta forma, tendem a apresentar este comportamento. Uma das explicações falava da possibilidade de indução de tensão nos fios que interligam os interruptores (os fios de retorno)</li>
+  <li>A iluminação deste quarto está ligada em um sistema three-way (daqueles que têm dois interruptores e você pode acender ou apagar a lâmpada utilizando qualquer um deles. Para saber mais, <a href="http://www.eletrica.info/three-way-interruptor-paralelo-o-que-e-como-funciona/">clique aqui</a> ). Em minhas buscas no Google, li alguma coisa falando que as lâmpadas fluorescentes, quando instaladas desta forma, tendem a apresentar este comportamento. Uma das explicações falava da possibilidade de indução de corrente nos fios que interligam os interruptores (os fios de retorno)</li>
   <li>Um dos interruptores pode estar com fuga (não abrindo o circuito corretamente). (descartei esta opção testando os interruptores)</li>
   <li>A lâmpada pode estar com uma de suas extremidades ligada diretamente na fase, ao invés do neutro (descartei esta opção com uma inspeção no quadro de distribuição e teste com o multímetro)</li>
 </ul>
 
-<p>Apesar de ser a mais estranha, a primeira das possibilidades é a que está parecendo a mais provável. Ainda não me convenci dela, mas…</p>
+<p>Aparentemente a primeira opção é a principal suspeita, apesar de eu ter achado a tensão de 40V alta para ser gerada pela indução… </p>
 
-<p>E, para resolver o problema, até que eu tenha tempo para descobrir de onde os 40V estão vindo, a solução foi a seguinte:</p>
+<p>E, para resolver o problema, até que eu tenha tempo para descobrir o mistérios dos 40V, a solução foi a seguinte: (que muito provavelmente ficará em definitivo!!!)</p>
 
 <p><img src="http://cdfreitas.github.io/images/lampada_fluorescente/resistor.jpg" alt="resistor" /></p>
 
@@ -62,8 +62,9 @@
 
 <p>Ah!! E a outra lâmpada que queimou? Por que não piscava?   </p>
 
-<p>Das duas uma.. Ou o reator dela tinha alguma proteção contra esta tensão mais baixa na entrada ou, ele era ineficiente e estes 40V não eram suficientes para fazer a lâmpada piscar e ficava armazenado no capacitor…</p>
+<p>Das duas uma.. Ou o reator dela tinha alguma proteção contra esta tensão mais baixa na entrada ou, ele era ineficiente e estes 40V não eram suficientes para fazer a lâmpada piscar e ficava armazenado no capacitor… (mais provável de ser a segunda opção)</p>
 
+<p><em>Aviso: este texto tem caráter meramente informativo. O autor não se reponsabiliza por qualquer dano causado na tentativa de repetir o procedimento aqui demonstrado…</em></p>
 ]]></content>
   </entry>
   
@@ -156,7 +157,7 @@ Quando encerrei o “reparo” que apresento aqui, pensei que se tratava de mais
 
 <p><a href="http://cdfreitas.github.io/images/rebelxt_ccd_fungus/IMG_0803.JPG"><img src="http://cdfreitas.github.io/images/rebelxt_ccd_fungus/cupcakes_semfungos.jpg" alt="recente1" /></a></p>
 
-<p><em>Aviso: este texto tem objetivo meramente informativo. O autor não se reponsabiliza por qualquer dano causado na tentativa de repetir o procedimento aqui demonstrado. Em resumo: se não sabe o que está fazendo, é melhor parar antes que….</em>  </p>
+<p><em>Aviso: este texto tem caráter meramente informativo. O autor não se reponsabiliza por qualquer dano causado na tentativa de repetir o procedimento aqui demonstrado…</em></p>
 ]]></content>
   </entry>
   
