@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
 
-  <title><![CDATA[Category: DIY | NOP]]></title>
+  <title><![CDATA[Category: diy | NOP]]></title>
   <link href="http://cdfreitas.github.io/blog/categories/diy/atom.xml" rel="self"/>
   <link href="http://cdfreitas.github.io/"/>
-  <updated>2013-06-17T00:02:50-03:00</updated>
+  <updated>2015-01-03T20:34:43-02:00</updated>
   <id>http://cdfreitas.github.io/</id>
   <author>
     <name><![CDATA[Christian D. Freitas]]></name>
@@ -172,6 +172,8 @@ Quando encerrei o “reparo” que apresento aqui, pensei que se tratava de mais
 Enquanto a plaquinha não chegava, as ideias iam surgindo. No início, pensei em um servidor de disco para armazenar meus arquivos pessoais. Em seguida, surgiu a ideia de usar a plaquinha como um servidor multimídia, usando o <a href="http://wiki.xbmc.org/index.php?title=Raspberry_Pi">XBMC</a>. Logo em seguida, pensei em instalar o <a href="http://mamedev.org/">Mame</a> para diversão.<br />
 <!-- more --></p>
 
+<p><em>Atualização em 2014-12-28 - Leia no fim da página…</em> </p>
+
 <p>E foram surgindo várias e várias ideias de uso para o Raspberry.  </p>
 
 <p>Pois bem, a placa chegou! Instalei o Debian no SD card e testei… Que maravilha !!!! Tudo funcionou conforme o script e com um desempenho satisfatório para o hardware.  </p>
@@ -211,8 +213,8 @@ Enquanto a plaquinha não chegava, as ideias iam surgindo. No início, pensei em
 
 <h2 id="script-de-definio-de-parmetros-defssh">Script de definição de parâmetros (defs.sh)</h2>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span> (defs.sh)</span> <a href='/downloads/code/speedtest/defs.sh'>download</a></figcaption>
- <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<p><figure class='code'><figcaption><span> (defs.sh)</span> <a href='/downloads/code/speedtest/defs.sh'>download</a></figcaption>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
@@ -476,7 +478,7 @@ Enquanto a plaquinha não chegava, as ideias iam surgindo. No início, pensei em
 </span><span class='line'>ARR_GRAPH_FILENAME<span class="o">[</span>13<span class="o">]=</span><span class="s2">&quot;upfec&quot;</span>
 </span><span class='line'>ARR_MODEM_STRING<span class="o">[</span>13<span class="o">]=</span><span class="s2">&quot;Upstream FEC&quot;</span>
 </span><span class='line'>VALUE_FROM_HTML<span class="o">[</span>13<span class="o">]=</span>0
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+</span></code></pre></td></tr></table></div></figure></p>
 
 <p>Neste script são definidos todos os parâmetros que serão compartilhados pelos módulos do projeto.</p>
 
@@ -503,8 +505,8 @@ Enquanto a plaquinha não chegava, as ideias iam surgindo. No início, pensei em
 
 <p>Este script cria o banco de dados que será utilizado pelo RRDTool para armazenar os valores medidos e capturados do modem.</p>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span> (create_database.sh)</span> <a href='/downloads/code/speedtest/create_database.sh'>download</a></figcaption>
- <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<p><figure class='code'><figcaption><span> (create_database.sh)</span> <a href='/downloads/code/speedtest/create_database.sh'>download</a></figcaption>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
@@ -618,7 +620,7 @@ Enquanto a plaquinha não chegava, as ideias iam surgindo. No início, pensei em
 </span><span class='line'>
 </span><span class='line'><span class="c"># Call string (create database)</span>
 </span><span class='line'><span class="nv">$str_exec</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+</span></code></pre></td></tr></table></div></figure></p>
 
 <p>A função deste script é montar a string que define os <em>data-source</em> do banco de dados e executar o aplicativo <em>rrdtool</em> para criar o banco de dados.  </p>
 
@@ -630,8 +632,8 @@ Enquanto a plaquinha não chegava, as ideias iam surgindo. No início, pensei em
 
 <p>Este script, um dos mais importantes do projeto, é responsável pela atualização do banco de dados.  </p>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span> (update_database.sh)</span> <a href='/downloads/code/speedtest/update_database.sh'>download</a></figcaption>
- <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<p><figure class='code'><figcaption><span> (update_database.sh)</span> <a href='/downloads/code/speedtest/update_database.sh'>download</a></figcaption>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
@@ -721,7 +723,7 @@ Enquanto a plaquinha não chegava, as ideias iam surgindo. No início, pensei em
 </span><span class='line'>
 </span><span class='line'><span class="c">#Exec rrdtool update</span>
 </span><span class='line'><span class="nv">$str_exec</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+</span></code></pre></td></tr></table></div></figure></p>
 
 <p>A linha de código que executa o teste da velocidade é a seguinte:  </p>
 
@@ -789,8 +791,8 @@ Enquanto a plaquinha não chegava, as ideias iam surgindo. No início, pensei em
 
 <p>Esta saída será repassada para o programa python <em>extract_html_data.py</em>, cujo código é reproduzido a seguir:</p>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span> (extract_html_data.py)</span> <a href='/downloads/code/speedtest/extract_html_data.py'>download</a></figcaption>
- <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<p><figure class='code'><figcaption><span> (extract_html_data.py)</span> <a href='/downloads/code/speedtest/extract_html_data.py'>download</a></figcaption>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
@@ -850,7 +852,7 @@ Enquanto a plaquinha não chegava, as ideias iam surgindo. No início, pensei em
 </span><span class='line'><span class="c">#O html parser encontra duas strings (data), que sao armazenados em um array</span>
 </span><span class='line'><span class="c"># 0 - Uma string que descreve o significado do campo</span>
 </span><span class='line'><span class="c"># 1 - Uma string que contem o valor do campo</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+</span></code></pre></td></tr></table></div></figure></p>
 
 <p>Este programa faz um <em>parse</em> no código html que é lido da entrada padrão (<em>pipe</em> da saída do grep) e extrai o valor de interesse (no código html exibido anteriormente, o valor que será extraído é o <em>17761</em>). Em seguida, o programa escreve este valor na saída padrão, utilizando o parâmetro que foi utilizado na chamada (“VALUE_FROM_HTML[$idx]”).  </p>
 
@@ -878,8 +880,8 @@ VALUE_FROM_HTML[1]=$Upload
 
 <p>Código HTML: </p>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span> (speedtest.html)</span> <a href='/downloads/code/speedtest/speedtest.html'>download</a></figcaption>
- <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<p><figure class='code'><figcaption><span> (speedtest.html)</span> <a href='/downloads/code/speedtest/speedtest.html'>download</a></figcaption>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
@@ -961,7 +963,7 @@ VALUE_FROM_HTML[1]=$Upload
 </span><span class='line'><span class="nt">&lt;/script&gt;</span>
 </span><span class='line'>
 </span><span class='line'><span class="nt">&lt;/html&gt;</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+</span></code></pre></td></tr></table></div></figure></p>
 
 <p>O código CSS não será apresentado aqui, mas pode ser baixado neste <a href="../../../../../downloads/code/speedtest/speedtest.css">link</a>   </p>
 
@@ -971,8 +973,8 @@ VALUE_FROM_HTML[1]=$Upload
 
 <p>Ao clicar em um dos “botões” na página, a função <em>create_graphs</em> será chamada, que por sua vez, executará o <em>cgi</em> <em>create_graphs.cgi</em>, exibido a seguir:  </p>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span> (create_graphs.cgi)</span> <a href='/downloads/code/speedtest/create_graphs.cgi'>download</a></figcaption>
- <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<p><figure class='code'><figcaption><span> (create_graphs.cgi)</span> <a href='/downloads/code/speedtest/create_graphs.cgi'>download</a></figcaption>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
@@ -1022,7 +1024,7 @@ VALUE_FROM_HTML[1]=$Upload
 </span><span class='line'><span class="nb">echo</span> <span class="s2">&quot;&lt;center&gt;Information generated on $(date)&lt;/center&gt;&quot;</span>
 </span><span class='line'><span class="nb">echo</span> <span class="s2">&quot;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&quot;</span>
 </span><span class='line'><span class="nb">echo</span> <span class="s2">&quot;&lt;/body&gt;&lt;/html&gt;&quot;</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+</span></code></pre></td></tr></table></div></figure></p>
 
 <p>Este <em>cgi</em> é um script <em>bash</em> que gera dinamicamente o código html que será exibido dentro do <em>iframe</em> definido na página <em>html</em> (<em>speedtest.html</em>).  </p>
 
@@ -1065,7 +1067,7 @@ VALUE_FROM_HTML[1]=$Upload
 
 <p>O resultado final será (trecho do arquivo):</p>
 
-<p>```
+<p>&#8220;`
     server.port                 = 80</p>
 
 <pre><code>server.breakagelog          = "/var/log/lighttpd/breakage.log"
@@ -1074,7 +1076,7 @@ cgi.assign                  = ( ".py" =&gt; "/usr/bin/python", ".sh" =&gt; "/bin
 index-file.names            = ( "index.php", "index.html", "index.lighttpd.html" )
 </code></pre>
 
-<p>```</p>
+<p>&#8220;`</p>
 
 <ul>
   <li>Editar o arquivo <em>/etc/groups</em> e adicionar o usuário corrente do raspberry no grupo <em>www-data</em> (substituir o NOME_DO_USUARIO, na linha abaixo, pelo usuário que rodará o cron no seu raspberry):</li>
@@ -1154,6 +1156,7 @@ index-file.names            = ( "index.php", "index.html", "index.lighttpd.html"
 
 <p>Os códigos estão disponíveis no repositório <a href="https://github.com/cdfreitas/speedtest">Github</a></p>
 
+<p>2014-12-28 - <em>Update: Devido a algumas alterações no site speedtest.net, o tespeed foi modificado para contemplá-las. Use o código mais recente do tespeed, encontrado em <a href="https://github.com/Janhouse/tespeed">tespeed</a></em></p>
 ]]></content>
   </entry>
   

@@ -97,7 +97,7 @@ Enquanto a &hellip;">
   
 
 
-<time datetime="2013-04-19T18:04:00-03:00" pubdate data-updated="true">Apr 19<span>th</span>, 2013</time>
+<time datetime="2013-04-19T18:04:00-03:00" pubdate data-updated="true"></time>
         
       </p>
     
@@ -109,6 +109,8 @@ Enquanto a &hellip;">
 <p>Há algum tempo, comprei uma placa <a href="http://raspberrypi.org">Raspberry Pi</a> com o objetivo de conhecer o hardware e medir o desempenho do Linux nela.
 Enquanto a plaquinha não chegava, as ideias iam surgindo. No início, pensei em um servidor de disco para armazenar meus arquivos pessoais. Em seguida, surgiu a ideia de usar a plaquinha como um servidor multimídia, usando o <a href="http://wiki.xbmc.org/index.php?title=Raspberry_Pi">XBMC</a>. Logo em seguida, pensei em instalar o <a href="http://mamedev.org/">Mame</a> para diversão.<br />
 <!-- more --></p>
+
+<p><em>Atualização em 2014-12-28 - Leia no fim da página…</em> </p>
 
 <p>E foram surgindo várias e várias ideias de uso para o Raspberry.  </p>
 
@@ -150,7 +152,7 @@ Enquanto a plaquinha não chegava, as ideias iam surgindo. No início, pensei em
 <h2 id="script-de-definio-de-parmetros-defssh">Script de definição de parâmetros (defs.sh)</h2>
 
 <div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span> (defs.sh)</span> <a href="/downloads/code/speedtest/defs.sh">download</a></figcaption>
- <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
 <span class="line-number">2</span>
 <span class="line-number">3</span>
 <span class="line-number">4</span>
@@ -442,7 +444,7 @@ Enquanto a plaquinha não chegava, as ideias iam surgindo. No início, pensei em
 <p>Este script cria o banco de dados que será utilizado pelo RRDTool para armazenar os valores medidos e capturados do modem.</p>
 
 <div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span> (create_database.sh)</span> <a href="/downloads/code/speedtest/create_database.sh">download</a></figcaption>
- <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
 <span class="line-number">2</span>
 <span class="line-number">3</span>
 <span class="line-number">4</span>
@@ -569,7 +571,7 @@ Enquanto a plaquinha não chegava, as ideias iam surgindo. No início, pensei em
 <p>Este script, um dos mais importantes do projeto, é responsável pela atualização do banco de dados.  </p>
 
 <div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span> (update_database.sh)</span> <a href="/downloads/code/speedtest/update_database.sh">download</a></figcaption>
- <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
 <span class="line-number">2</span>
 <span class="line-number">3</span>
 <span class="line-number">4</span>
@@ -758,7 +760,7 @@ Enquanto a plaquinha não chegava, as ideias iam surgindo. No início, pensei em
 <p>Esta saída será repassada para o programa python <em>extract_html_data.py</em>, cujo código é reproduzido a seguir:</p>
 
 <div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span> (extract_html_data.py)</span> <a href="/downloads/code/speedtest/extract_html_data.py">download</a></figcaption>
- <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
 <span class="line-number">2</span>
 <span class="line-number">3</span>
 <span class="line-number">4</span>
@@ -847,7 +849,7 @@ VALUE_FROM_HTML[1]=$Upload
 <p>Código HTML: </p>
 
 <div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span> (speedtest.html)</span> <a href="/downloads/code/speedtest/speedtest.html">download</a></figcaption>
- <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
 <span class="line-number">2</span>
 <span class="line-number">3</span>
 <span class="line-number">4</span>
@@ -940,7 +942,7 @@ VALUE_FROM_HTML[1]=$Upload
 <p>Ao clicar em um dos “botões” na página, a função <em>create_graphs</em> será chamada, que por sua vez, executará o <em>cgi</em> <em>create_graphs.cgi</em>, exibido a seguir:  </p>
 
 <div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span> (create_graphs.cgi)</span> <a href="/downloads/code/speedtest/create_graphs.cgi">download</a></figcaption>
- <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
 <span class="line-number">2</span>
 <span class="line-number">3</span>
 <span class="line-number">4</span>
@@ -1136,6 +1138,7 @@ VALUE_FROM_HTML[1]=$Upload
 
 <p>Os códigos estão disponíveis no repositório <a href="https://github.com/cdfreitas/speedtest">Github</a></p>
 
+<p>2014-12-28 - <em>Update: Devido a algumas alterações no site speedtest.net, o tespeed foi modificado para contemplá-las. Use o código mais recente do tespeed, encontrado em <a href="https://github.com/Janhouse/tespeed">tespeed</a></em></p>
 </div>
 
 
@@ -1158,12 +1161,12 @@ VALUE_FROM_HTML[1]=$Upload
   
 
 
-<time datetime="2013-04-19T18:04:00-03:00" pubdate data-updated="true">Apr 19<span>th</span>, 2013</time>
+<time datetime="2013-04-19T18:04:00-03:00" pubdate data-updated="true"></time>
       
 
 <span class="categories">
   
-    <a class='category' href='/blog/categories/diy/'>DIY</a>, <a class='category' href='/blog/categories/raspberry-pi/'>Raspberry Pi</a>
+    <a class='category' href='/blog/categories/diy/'>diy</a>, <a class='category' href='/blog/categories/raspberry-pi/'>raspberry pi</a>
   
 </span>
 
@@ -1230,7 +1233,7 @@ VALUE_FROM_HTML[1]=$Upload
     </div>
   </div>
   <footer role="contentinfo"><p>
-  Copyright &copy; 2013 - Christian D. Freitas -
+  Copyright &copy; 2015 - Christian D. Freitas -
   <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
 </p>
 
